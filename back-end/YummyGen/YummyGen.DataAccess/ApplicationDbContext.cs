@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using YummyGen.Domain;
 
 namespace YummyGen.DataAccess
@@ -8,6 +9,9 @@ namespace YummyGen.DataAccess
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseNpgsql("Server=localhost;Database=YummyGenDatabase;User Id=postgres;Password=daucufly;");
+        }
     }
 }
