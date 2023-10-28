@@ -2,7 +2,7 @@
 {
     public class Ingredient : BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         public List<RecipeIngredient> Recipes { get; set; } = new();
     }
 }
