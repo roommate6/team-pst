@@ -6,12 +6,16 @@ namespace YummyGen.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<Ingredient> Ingredients { get; set; }
+		public ApplicationDbContext()
+		{
+		}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            options.UseNpgsql("Server=localhost;Database=YummyGenDatabase;User Id=postgres;Password=daucufly;");
-        }
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+			: base(options)
+		{
+		}
+
+		public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
     }
 }
