@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YummyGen.Application\YummyGen.Application.csproj" />
+    <ProjectReference Include="..\YummyGen.Domain\YummyGen.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

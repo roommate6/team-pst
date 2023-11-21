@@ -2,5 +2,6 @@
 {
     public interface IIngredientRepository : IRepository<Ingredient>
     {
+
     }
 }

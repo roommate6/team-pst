@@ -1,32 +1,24 @@
 ﻿using YummyGen.Domain;
+using YummyGen.Domain.Dto;
 using YummyGen.Domain.Interfaces;
 
 namespace YummyGen.Application
 {
-    public class RecipeIngredientService
+    public class RecipeIngredientService : IRecipeIngredientService
     {
-        private readonly IRecipeIngredientRepository recipeRepository;
+        private readonly IRecipeIngredientRepository recipeIngredientRepository;
 
-        public RecipeIngredientService(IRecipeIngredientRepository recipeRepository)
+        public RecipeIngredientService(IRecipeIngredientRepository recipeIngredientRepository)
         {
-            this.recipeRepository = recipeRepository ?? throw new ArgumentNullException(nameof(recipeRepository));
+            this.recipeIngredientRepository = recipeIngredientRepository ?? throw new ArgumentNullException(nameof(recipeIngredientRepository));
         }
 
-        public List<Recipe> GetRecipesByIngredients(List<Ingredient> ingredients)
+        public async Task<List<RecipeDto>> GetRecipesByIngredients(List<int> ingredientIds)
         {
-            var recipes = recipeRepository.GetAll();
-            foreach (var recipe in recipes)
-            {
-                var recipeIngredients = recipe.Ingredients;
-                var recipeIngredientIds = recipeIngredients.Select(ri => ri.IngredientId);
-                var ingredientIds = ingredients.Select(i => i.Id);
-                if (recipeIngredientIds.All(ingredientIds.Contains))
-                {
-                    return recipe;
-                }
-            }
-
-            return null;
+            var recipeIngredients = await recipeIngredientRepository.GetByIngredients(ingredientIds);
+            var recipes = recipeIngredients.Select(ri => ri.Recipe).ToList();
+            var result = recipes.Select(r => Mapper.GetRecipeDto(r)).ToList();
+            return result;
         }
     }
 }
