@@ -18,8 +18,12 @@ namespace YummyGenAPI
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
 
             builder.Services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
+            builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
+            builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 
             builder.Services.AddScoped<IRecipeIngredientService, RecipeIngredientService>();
+            builder.Services.AddScoped<IRecipeService, RecipeService>();
+            builder.Services.AddScoped<IIngredientService, IngredientService>();
 
         }
     }

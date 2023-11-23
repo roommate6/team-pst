@@ -5,22 +5,30 @@ namespace YummyGen.Application
 {
     public static class Mapper
     {
-        public static RecipeDto GetRecipeDto(Recipe recipe)
+        public static RecipeDto ToRecipeDto(Recipe recipe)
         {
             return new RecipeDto
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
                 ShortDescription = recipe.ShortDescription,
-                Ingredients = recipe.Ingredients.Select(ri => GetIngredientDto(ri.Ingredient)).ToList()
+                Ingredients = recipe.Ingredients.Select(ri => ToIngredientDto(ri.Ingredient)).ToList()
             };
         }
 
-        public static IngredientDto GetIngredientDto(Ingredient ingredient)
+        public static IngredientDto ToIngredientDto(Ingredient ingredient)
         {
             return new IngredientDto
             {
                 Id = ingredient.Id,
+                Name = ingredient.Name
+            };
+        }
+
+        public static Ingredient ToIngredient(AddIngredientDto ingredient)
+        {
+            return new Ingredient
+            {
                 Name = ingredient.Name
             };
         }

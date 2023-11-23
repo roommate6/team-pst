@@ -17,7 +17,7 @@ namespace YummyGen.Application
         {
             var recipeIngredients = await recipeIngredientRepository.GetByIngredients(ingredientIds);
             var recipes = recipeIngredients.Select(ri => ri.Recipe).ToList();
-            var result = recipes.Select(r => Mapper.GetRecipeDto(r)).ToList();
+            var result = recipes.Select(r => Mapper.ToRecipeDto(r)).ToList();
             return result;
         }
     }
