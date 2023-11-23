@@ -2,5 +2,6 @@
 {
     public interface IRecipeRepository : IRepository<Recipe>
     {
+        Task<Recipe> GetByIdWithIngredients(int id);
     }
 }

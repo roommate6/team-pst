@@ -7,12 +7,27 @@ namespace YummyGen.Application
     {
         public static RecipeDto ToRecipeDto(Recipe recipe)
         {
-            return new RecipeDto
+            var recipeDto = new RecipeDto
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
                 ShortDescription = recipe.ShortDescription,
-                Ingredients = recipe.Ingredients.Select(ri => ToIngredientDto(ri.Ingredient)).ToList()
+            };
+
+            if (recipe.Ingredients != null)
+            {
+                recipeDto.Ingredients = recipe.Ingredients.Select(i => ToIngredientDto(i)).ToList();
+            }
+
+            return recipeDto;
+        }
+
+        public static Recipe ToRecipe(AddRecipeDto recipe)
+        {
+            return new Recipe
+            {
+                Name = recipe.Name,
+                ShortDescription = recipe.ShortDescription
             };
         }
 

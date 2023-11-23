@@ -9,12 +9,12 @@ namespace YummyGen.Controller
     public class RecipeController : ControllerBase
     {
         private readonly IRecipeIngredientService recipeIngredientService;
-        private readonly IRecipeRepository recipeRepository;
+        private readonly IRecipeService recipeService;
 
-        public RecipeController(IRecipeIngredientService recipeIngredientService, IRecipeRepository recipeRepository)
+        public RecipeController(IRecipeIngredientService recipeIngredientService, IRecipeService recipeService)
         {
             this.recipeIngredientService = recipeIngredientService ?? throw new ArgumentNullException(nameof(recipeIngredientService));
-            this.recipeRepository = recipeRepository ?? throw new ArgumentNullException(nameof(recipeRepository));
+            this.recipeService = recipeService ?? throw new ArgumentNullException(nameof(recipeService));
         }
 
         [HttpGet("all-by-ingredients")]
@@ -27,8 +27,22 @@ namespace YummyGen.Controller
         [HttpGet("all")]
         public async Task<ActionResult<List<RecipeDto>>> GetAllRecipes()
         {
-            var recipes = await recipeRepository.GetAll();
+            var recipes = await recipeService.GetAllRecipes();
             return Ok(recipes);
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult<RecipeDto>> AddRecipe([FromBody] AddRecipeDto addRecipeDto)
+        {
+            var result = await recipeService.AddRecipe(addRecipeDto);
+            return Ok(result);
+        }
+
+        [HttpPost("add-ingredient")]
+        public async Task<ActionResult<RecipeDto>> AddIngredientToRecipe([FromQuery] int ingredientId, [FromQuery] int recipeId)
+        {
+            var result = await recipeIngredientService.AddIngredientToRecipe(ingredientId, recipeId);
+            return Ok(result);
         }
     }
 }
