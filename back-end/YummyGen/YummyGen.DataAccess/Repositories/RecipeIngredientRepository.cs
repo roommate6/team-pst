@@ -15,6 +15,7 @@ namespace YummyGen.DataAccess.Repositories
             var recipeIngredients = await context.RecipeIngredients
                 .Where(ri => ingredientsIds.Contains(ri.IngredientId))
                 .Include(ri => ri.Recipe)
+                .ThenInclude(r => r.Ingredients)
                 .ToListAsync();
             return recipeIngredients;
         }

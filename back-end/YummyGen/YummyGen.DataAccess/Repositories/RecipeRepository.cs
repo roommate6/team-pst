@@ -18,5 +18,13 @@ namespace YummyGen.DataAccess.Repositories
                 .FirstOrDefaultAsync();
             return recipe;
         }
+
+        public async Task<List<Recipe>> GetAllWithIngredients()
+        {
+            var recipes = await context.Recipes
+                .Include(r => r.Ingredients)
+                .ToListAsync();
+            return recipes;
+        }
     }
 }

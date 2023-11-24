@@ -18,15 +18,13 @@ namespace YummyGen.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<RecipeIngredient>()
+                .HasKey(ri => new { ri.RecipeId, ri.IngredientId });
+
             modelBuilder.Entity<Recipe>()
                 .HasMany(r => r.Ingredients)
                 .WithMany(r => r.Recipes)
                 .UsingEntity<RecipeIngredient>();
-
-            //modelBuilder.Entity<RecipeIngredient>()
-            //    .HasOne(ri => ri.Ingredient)
-            //    .WithMany(i => i.RecipeIngredients)
-            //    .HasForeignKey(ri => ri.IngredientId);
         }
 
         public DbSet<Recipe> Recipes { get; set; }

@@ -22,7 +22,7 @@ namespace YummyGen.Application
 
         public async Task<List<RecipeDto>> GetAllRecipes()
         {
-            var recipes = await recipeRepository.GetAll();
+            var recipes = await recipeRepository.GetAllWithIngredients();
             var result = recipes.Select(r => Mapper.ToRecipeDto(r)).ToList();
             return result;
         }
