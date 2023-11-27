@@ -13,6 +13,14 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 registerLocaleData(en);
 
@@ -21,14 +29,21 @@ registerLocaleData(en);
     AppComponent,
     RecipePageComponent,
     IngredientPageComponent,
-    StepCardComponent
+    StepCardComponent,
+    IngredientListComponent,
+    SideMenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NzButtonModule,
+    NzIconModule,
+    NzMenuModule,
+    NzLayoutModule,
+    NzBreadCrumbModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

@@ -2,8 +2,7 @@ import { PathLocationStrategy } from '@angular/common';
 import { Component } from '@angular/core';
 import { Ingredient } from '../interfaces/ingredient.interface';
 import { Recipe } from '../interfaces/recipe.interface';
-import { StepCardComponent } from '../step-card/step-card.component';
-
+import { IngredientListComponent } from '../ingredient-list/ingredient-list.component';
 @Component({
   selector: 'app-recipe-page',
   templateUrl: './recipe-page.component.html',

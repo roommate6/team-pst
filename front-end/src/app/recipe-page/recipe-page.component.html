@@ -14,6 +14,8 @@
         <h1>Ingredients</h1>
         <div *ngFor="let ingredient of recipeTest.Ingredients" class="ingredient">
           <p>{{ingredient.Description}}</p>
+
+        <app-ingredient-list [ingredients]="recipeTest.Ingredients"></app-ingredient-list>
       </div>
 
     </div>
