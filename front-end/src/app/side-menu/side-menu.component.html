@@ -8,8 +8,8 @@
       </li>
       <li nz-submenu nzTitle="Search" nzIcon="user">
         <ul>
-          <li nz-menu-item>Search By Name</li>
-          <li nz-menu-item>Search By Produce</li>
+          <li nz-menu-item (click)="(moveToRecipe())">Search By Name</li>
+          <li nz-menu-item (click)="(moveToIngredient())">Search By Produce</li>
         </ul>
       </li>
       <li nz-menu-item>
@@ -19,7 +19,8 @@
     </ul>
   </nz-sider>
   <nz-layout>
-<app-recipe-page/>
+    <!--Pagina / Routerul trebuie pus aici pentru ca meniul sa functioneze corect-->
+    <router-outlet/>
   </nz-layout>
 
 </nz-layout>

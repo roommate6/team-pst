@@ -39,11 +39,12 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
     NzButtonModule,
     NzIconModule,
     NzMenuModule,
     NzLayoutModule,
-    NzBreadCrumbModule
+    NzBreadCrumbModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
