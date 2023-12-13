@@ -6,6 +6,7 @@ namespace YummyGen.Domain
     {
         public string Name { get; set; } = null!;
         public string ShortDescription { get; set; } = null!;
-        public List<RecipeIngredient> Ingredients { get; set; } = new();
+        public List<Ingredient> Ingredients { get; } = new();
+        public List<RecipeIngredient> RecipeIngredients { get; } = new();
     }
 }
