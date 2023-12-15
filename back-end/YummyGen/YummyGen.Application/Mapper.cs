@@ -47,5 +47,26 @@ namespace YummyGen.Application
                 Name = ingredient.Name
             };
         }
+
+        public static User ToUser(RegisterDto userDto)
+        {
+            return new User
+            {
+                UserName = userDto.UserName,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+            };
+        }
+
+        public static UserDto ToUserDto(User user)
+        {
+            return new UserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+            };
+        }
     }
 }
