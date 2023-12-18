@@ -1,20 +1,22 @@
-﻿using YummyGen.Domain.Dto;
+﻿using Microsoft.AspNetCore.Identity;
+using YummyGen.Domain;
+using YummyGen.Domain.Dto;
 using YummyGen.Domain.Interfaces;
 
 namespace YummyGen.Application
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IUserRepository userRepository;
+        private readonly UserManager<User> userManager;
 
-        public AuthenticationService(IUserRepository userRepository)
+        public AuthenticationService(UserManager<User> userManager)
         {
-            this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
 
         public async Task<UserDto> Register(RegisterDto userDto)
         {
-            var existingUser = await userRepository.SingleByCondition(u => u.UserName == userDto.UserName);
+            var existingUser = await userManager.FindByNameAsync(userDto.UserName);
 
             if (existingUser != null)
             {
@@ -22,7 +24,14 @@ namespace YummyGen.Application
             }
 
             var user = Mapper.ToUser(userDto);
-            var addedUser = await userRepository.Add(user);
+            var result = await userManager.CreateAsync(user, userDto.Password);
+
+            if (!result.Succeeded)
+            {
+                throw new Exception("User creation failed");
+            }
+
+            var addedUser = await userManager.FindByNameAsync(userDto.UserName);
 
             var registerResult = Mapper.ToUserDto(addedUser);
             return registerResult;
@@ -30,14 +39,21 @@ namespace YummyGen.Application
 
         public async Task<UserDto> Login(LoginDto loginDto)
         {
-            var user = await userRepository.SingleByCondition(u => u.UserName == loginDto.UserName);
+            var existingUser = await userManager.FindByNameAsync(loginDto.UserName);
 
-            if (user == null)
+            if (existingUser == null)
             {
                 throw new Exception("User does not exist");
             }
 
-            var loginResult = Mapper.ToUserDto(user);
+            var result = await userManager.CheckPasswordAsync(existingUser, loginDto.Password);
+
+            if (!result)
+            {
+                throw new Exception("Invalid password");
+            }
+
+            var loginResult = Mapper.ToUserDto(existingUser);
 
             return loginResult;
         }

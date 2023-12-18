@@ -24,6 +24,8 @@ namespace YummyGen.DataAccess
                 .HasMany(r => r.Ingredients)
                 .WithMany(r => r.Recipes)
                 .UsingEntity<RecipeIngredient>();
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Recipe> Recipes { get; set; }
