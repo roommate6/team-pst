@@ -14,24 +14,24 @@ namespace YummyGen.Application
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
 
-        public async Task<UserDto> Register(RegisterDto userDto)
+        public async Task<UserDto> Register(RegisterDto registerDto)
         {
-            var existingUser = await userManager.FindByNameAsync(userDto.UserName);
+            var existingUser = await userManager.FindByNameAsync(registerDto.UserName);
 
             if (existingUser != null)
             {
                 throw new Exception("User already exists");
             }
 
-            var user = Mapper.ToUser(userDto);
-            var result = await userManager.CreateAsync(user, userDto.Password);
+            var user = Mapper.ToUser(registerDto);
+            var result = await userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded)
             {
                 throw new Exception("User creation failed");
             }
 
-            var addedUser = await userManager.FindByNameAsync(userDto.UserName);
+            var addedUser = await userManager.FindByNameAsync(registerDto.UserName);
 
             var registerResult = Mapper.ToUserDto(addedUser);
             return registerResult;
