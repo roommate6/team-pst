@@ -15,12 +15,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+
+import { User } from './interfaces/user.interface';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { FormBuilder ,FormGroup, FormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterPageComponent } from './register-page/register-page.component'
 
 registerLocaleData(en);
 
@@ -31,7 +40,9 @@ registerLocaleData(en);
     IngredientPageComponent,
     StepCardComponent,
     IngredientListComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    LoginPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +56,10 @@ registerLocaleData(en);
     NzMenuModule,
     NzLayoutModule,
     NzBreadCrumbModule,
+    NzFormModule,
+    NzInputModule,
+    NzCardModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
