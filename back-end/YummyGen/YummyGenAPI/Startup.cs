@@ -10,9 +10,22 @@ namespace YummyGenAPI
 {
     public class Startup
     {
-        public static void RegisterServices(WebApplicationBuilder builder)
+        public static void RegisterServices(WebApplicationBuilder builder, string originsName, string originsUrl)
         {
-            builder.Services.AddControllers();
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy(name: originsName,
+								  policy =>
+								  {
+									  policy.WithOrigins(originsUrl)
+									  .AllowAnyHeader()
+									  .AllowAnyMethod()
+									  .AllowAnyOrigin();
+								  });
+			});
+
+
+			builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

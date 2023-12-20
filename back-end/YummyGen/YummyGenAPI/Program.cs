@@ -2,7 +2,9 @@ using YummyGenAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Startup.RegisterServices(builder);
+var originsName = "frontEndOrigins";
+var originsUrl = "http://localhost.com:4200";
+Startup.RegisterServices(builder, originsName, originsUrl);
 
 var app = builder.Build();
 
@@ -13,6 +15,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(originsName);
 
 app.UseAuthorization();
 
