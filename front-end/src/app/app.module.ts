@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecipePageComponent } from './recipe-page/recipe-page.component';
-import { IngredientPageComponent } from './ingredient-page/ingredient-page.component';
-import { StepCardComponent } from './step-card/step-card.component';
+import { RecipePageComponent } from './components/recipe-page/recipe-page.component';
+import { IngredientPageComponent } from './components/ingredient-page/ingredient-page.component';
+import { StepCardComponent } from './components/step-card/step-card.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -13,9 +13,9 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 import { User } from './interfaces/user.interface';
 
@@ -27,9 +27,14 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { FormBuilder ,FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterPageComponent } from './register-page/register-page.component'
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 registerLocaleData(en);
 
@@ -42,7 +47,7 @@ registerLocaleData(en);
     IngredientListComponent,
     SideMenuComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,11 +64,9 @@ registerLocaleData(en);
     NzFormModule,
     NzInputModule,
     NzCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [
-    { provide: NZ_I18N, useValue: en_US }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
