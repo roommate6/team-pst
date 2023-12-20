@@ -1,0 +1,41 @@
+.main-container{
+    //Alligng the content side by side
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    //Adding margin to the container
+    margin: 10px;
+    //Adding padding to the container
+    padding: 10px;
+    //Adding border to the container
+    border: 1px solid #ccc;
+    background-color: rgb(240, 238, 236);
+    //Adding border radius to the container
+    border-radius: 10px;
+
+    //Separate the content from each other
+    & > * {
+        margin: 10px;
+    }
+
+}
+
+.number-step{
+    //Adding border to the container
+    border: 10px solid rgb(177, 11, 11);
+    //Adding padding to the container
+    padding: 10px;
+    //Adding border radius to the container
+    border-radius: 70%;
+    //Adding background color to the container
+    background-color: rgb(240, 238, 236);
+    //Adding font size to the container
+    font-size: 20px;
+    //Adding font weight to the container
+    font-weight: 600;
+    //Adding margin to the container
+    margin: 10px;
+    //Text color
+    color: rgb(177, 11, 11);
+}

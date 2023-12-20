@@ -1,0 +1,36 @@
+<div class="main-container">
+
+  <div class="center-container">
+
+    <div class="recipe-name" [textContent]="recipeTest.Name"></div>
+
+    <div class="image-ingredient-container">
+      <!--Picture of the recipe-->
+      <img [src]="recipeTest.ImageURL" alt="recipe image" class="image-container">
+
+      <!--List of the ingredients-->
+
+      <div class="ingredients-container"></div>
+        <h1>Ingredients</h1>
+        <div *ngFor="let ingredient of recipeTest.Ingredients" class="ingredient">
+          <p>{{ingredient.Description}}</p>
+
+        <app-ingredient-list [ingredients]="recipeTest.Ingredients"></app-ingredient-list>
+      </div>
+
+    </div>
+
+
+    <div class="description-container">
+        {{recipeTest.Description}}
+    </div>
+
+
+    <div class="recipe-steps">
+      <div *ngFor="let step of recipeTest.Steps; let stepNum = index">
+        <!--Add a new step-card with an incrased number and the description the step.Description-->
+        <app-step-card [stepNumber]=stepNum+1 [stepDescription]="step"></app-step-card>
+      </div>
+
+</div>
+</div>

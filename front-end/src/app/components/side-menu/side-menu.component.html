@@ -1,0 +1,28 @@
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="300px">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item>
+        <span nz-icon nzType="pie-chart"></span>
+        <span>Main Page</span>
+      </li>
+      <li nz-submenu nzTitle="Search" nzIcon="user">
+        <ul>
+          <li nz-menu-item (click)="(moveToRecipe())">Search By Name</li>
+          <li nz-menu-item (click)="(moveToIngredient())">Search By Produce</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="user"></span>
+        <span>User</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <!--Pagina / Routerul trebuie pus aici pentru ca meniul sa functioneze corect-->
+    <app-recipe-page/>
+  </nz-layout>
+
+</nz-layout>
+
+
