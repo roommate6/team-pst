@@ -12,6 +12,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { ApiConfigurations } from 'src/app/classes/apiConfigurations';
 
 @Component({
   selector: 'app-login-page',
@@ -41,13 +42,18 @@ export class LoginPageComponent {
   }
 
   userIsValid(): boolean {
-    return this.userService.checkUser(
-      this.loginForm.value.username,
-      this.loginForm.value.password
-    );
+    // return this.userService.checkUser(
+    //   this.loginForm.value.username,
+    //   this.loginForm.value.password
+    // );
+    return false;
   }
 
   loginClick() {
+    this.userService.login(
+      this.loginForm.value.username,
+      this.loginForm.value.password
+    );
     if (this.userIsValid()) {
       this.router.navigate(['/menu']);
     } else {

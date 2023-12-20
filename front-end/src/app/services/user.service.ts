@@ -1,57 +1,41 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user.interface';
-import userData from '../services/users.json';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiConfigurations } from '../classes/apiConfigurations';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  //Placeholder list of users
-  //O sa fie luat dintr-o baza de date sau direct o sa schimbam
-  //pentru a verifica doar o singura valouare
-  public userList: User[] = userData
+  currentUser?: User;
+  constructor(private http: HttpClient) {}
 
-  get users(): User[] {
-    return this.userList;
+  login(userName: string, password: string): void {
+    const url: string = ApiConfigurations.instance.authenticationLoginUrl;
+    const headers = new HttpHeaders({});
+
+    let logedUser: User;
+    this.http
+      .post(
+        url,
+        {
+          userName: userName,
+          password: password,
+        },
+        {
+          headers: headers,
+        }
+      )
+      .subscribe({
+        next: (data: any) => {
+          logedUser = {
+            id: data.id,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            userName: data.userName,
+          };
+          console.log(logedUser);
+        },
+      });
   }
-
-  constructor() { }
-
-  checkUser(Username: string, Password: string): boolean {
-    console.log(Username);
-    console.log(Password);
-    for (let user of this.userList) {
-      console.log(user.Username);
-      console.log(user.Password);
-      if (user.Username == Username && user.Password == Password) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  //Fucntie pentru a verifica daca un username exista in lista de useri
-  checkUsername(username: string): boolean {
-    for (let user of this.userList) {
-      if (user.Username == username) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  checkPassword(Password: string): boolean {
-    for (let user of this.userList) {
-      if (user.Password == Password) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  //Functie pentru a adauga un user in lista de useri
-  addUser(user: User): void {
-    userData.push(user);
-  }
-
 }
