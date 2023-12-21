@@ -8,10 +8,12 @@ namespace YummyGen.Application
     public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<User> userManager;
+        private readonly ITokenService tokenService;
 
-        public AuthenticationService(UserManager<User> userManager)
+        public AuthenticationService(UserManager<User> userManager, ITokenService tokenService)
         {
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            this.tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
         }
 
         public async Task<UserDto> Register(RegisterDto registerDto)
@@ -37,7 +39,7 @@ namespace YummyGen.Application
             return registerResult;
         }
 
-        public async Task<UserDto> Login(LoginDto loginDto)
+        public async Task<LoginResult> Login(LoginDto loginDto)
         {
             var existingUser = await userManager.FindByNameAsync(loginDto.UserName);
 
@@ -53,7 +55,9 @@ namespace YummyGen.Application
                 throw new Exception("Invalid password");
             }
 
-            var loginResult = Mapper.ToUserDto(existingUser);
+            var userDto = Mapper.ToUserDto(existingUser);
+            var token = await tokenService.CreateTokenAsync(existingUser);
+            var loginResult = new LoginResult { Token = token, User = userDto };
 
             return loginResult;
         }

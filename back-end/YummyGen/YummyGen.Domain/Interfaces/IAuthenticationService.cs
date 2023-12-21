@@ -4,7 +4,7 @@ namespace YummyGen.Domain.Interfaces
 {
     public interface IAuthenticationService
     {
-        Task<UserDto> Login(LoginDto loginDto);
+        Task<LoginResult> Login(LoginDto loginDto);
         Task<UserDto> Register(RegisterDto userDto);
     }
 }

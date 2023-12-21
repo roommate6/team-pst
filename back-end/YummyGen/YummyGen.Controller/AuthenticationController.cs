@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using YummyGen.Domain;
 using YummyGen.Domain.Dto;
 using YummyGen.Domain.Interfaces;
 
@@ -16,12 +17,12 @@ namespace YummyGen.Controller
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
+        public async Task<ActionResult<LoginResult>> Login([FromBody] LoginDto loginDto)
         {
             if (ModelState.IsValid)
             {
-                var user = await authenticationService.Login(loginDto);
-                return Ok(user);
+                var loginResult = await authenticationService.Login(loginDto);
+                return Ok(loginResult);
             }
 
             return BadRequest("Login has failed");
