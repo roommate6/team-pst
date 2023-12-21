@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { User } from '../../interfaces/user.interface';
 import { UserService } from '../../services/user.service';
-import userData from '../../services/users.json';
+//import userData from '../../services/users.json';
 
 @Component({
   selector: 'app-register-page',

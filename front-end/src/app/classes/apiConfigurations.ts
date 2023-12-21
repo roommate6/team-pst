@@ -45,9 +45,7 @@ export class ApiConfigurations {
     return ApiConfigurations._instance;
   }
 
-  private constructor() {
-    console.log('singleton initialized');
-  }
+  private constructor() {}
 
   private static _instance: ApiConfigurations | null = null;
 }
