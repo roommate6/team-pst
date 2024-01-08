@@ -14,7 +14,7 @@ export class SideMenuComponent {
   ngOnInit(): void {}
 
   moveToRecipe() {
-    this.router.navigate(['/recipe']);
+    this.router.navigate(['/name-search']);
   }
 
   moveToIngredient() {

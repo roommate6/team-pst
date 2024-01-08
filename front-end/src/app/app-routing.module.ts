@@ -6,6 +6,7 @@ import { IngredientPageComponent } from './components/ingredient-page/ingredient
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
+import { SearchNamePageComponent } from './components/search-name-page/search-name-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardPageComponent },
   { path: 'recipe', component: RecipePageComponent },
   { path: 'ingredient', component: IngredientPageComponent },
+  { path: 'name-search', component: SearchNamePageComponent },
   { path: 'menu', component: SideMenuComponent },
 ];
 

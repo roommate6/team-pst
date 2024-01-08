@@ -1,0 +1,33 @@
+<!--Add form control so that text changes are being kept tack of-->
+<h1>Search Page</h1>
+
+<nz-input-group nzSearch nzSize="large">
+  <input
+    [(ngModel)]="searchTerm"
+    type="text"
+    nz-input
+    placeholder="input search text"
+  />
+</nz-input-group>
+
+<button nz-button nzType="primary">
+  <span nz-icon nzType="search"></span>
+  Search
+</button>
+<span *ngIf="isLoading">now loading...</span>
+
+<table>
+  <tr *ngFor="let recipe of recipe_list">
+    <!--Only show if the searchTerm is present in the recipe.Name-->
+    <td *ngIf="recipe.Name.includes(searchTerm)">{{ recipe.Name }}</td>
+  </tr>
+</table>
+
+<div class="card-container">
+  <tr *ngFor="let recipe of recipe_list">
+    <app-recipe-card
+      [recipeName]="recipe.Name"
+      [recipeDescription]="recipe.Description"
+    ></app-recipe-card>
+  </tr>
+</div>
