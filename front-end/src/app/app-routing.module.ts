@@ -1,12 +1,12 @@
-import { Component, NgModule } from '@angular/core';
+import { RecipePageComponent } from './components/recipe-page/recipe-page.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
+import { StepCardComponent } from './components/step-card/step-card.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { IngredientPageComponent } from './components/ingredient-page/ingredient-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { RouterModule, Routes } from '@angular/router';
-import { RecipePageComponent } from './recipe-page/recipe-page.component';
-import { StepCardComponent } from './step-card/step-card.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
-import { IngredientPageComponent } from './ingredient-page/ingredient-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { SearchPageComponent } from './search-page/search-page.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {path : '',redirectTo:'login', pathMatch: 'full'},

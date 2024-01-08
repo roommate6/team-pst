@@ -1,8 +1,8 @@
 import { StepCardComponent } from '../step-card/step-card.component';
 
 import { Component } from '@angular/core';
-import { Recipe } from '../interfaces/recipe.interface';
-import recipeData from '../services/recipie.json';
+import { Recipe } from '../../interfaces/recipe.interface';
+import recipeData from '../../services/recipie.json';
 
 import { NzListModule } from 'ng-zorro-antd/list';
 import { Form, FormControl } from '@angular/forms';

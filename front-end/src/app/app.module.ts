@@ -34,11 +34,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { SearchPageComponent } from './search-page/search-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { RecipeCardComponent } from './recipe-card/recipe-card.component';
-
+import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 
 registerLocaleData(en);
 
@@ -51,7 +50,7 @@ registerLocaleData(en);
     IngredientListComponent,
     SideMenuComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
     SearchPageComponent,
     RecipeCardComponent
   ],

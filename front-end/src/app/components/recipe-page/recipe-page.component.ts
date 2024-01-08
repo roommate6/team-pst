@@ -1,8 +1,9 @@
 import { PathLocationStrategy } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Ingredient } from '../../interfaces/ingredient.interface';
 import { Recipe } from '../../interfaces/recipe.interface';
 import { IngredientListComponent } from '../ingredient-list/ingredient-list.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-recipe-page',
   templateUrl: './recipe-page.component.html',
@@ -11,6 +12,7 @@ import { IngredientListComponent } from '../ingredient-list/ingredient-list.comp
 export class RecipePageComponent {
   //Variables
   stepNumber: number = 1;
+  @Input() inputRecipe!: Recipe;
 
   //For test at the moment, to be sure stuff works
   recipeTest: Recipe = {
@@ -42,4 +44,17 @@ export class RecipePageComponent {
   };
 
   //Functions
+  ngOnInit(): void {
+    this.inputRecipe=this.recipeTest;
+  }
+
+  constructor(private router: Router){}
+
+  moveToRecipe() {
+    this.router.navigate(['/recipe']);
+  }
+
+  moveToIngredient() {
+    this.router.navigate(['/ingredient']);
+  }
 }
