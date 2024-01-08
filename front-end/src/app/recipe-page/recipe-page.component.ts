@@ -52,3 +52,4 @@ export class RecipePageComponent {
     this.router.navigate(['/ingredient']);
   }
 }
+

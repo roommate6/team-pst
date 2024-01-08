@@ -6,22 +6,18 @@ import { RecipePageComponent } from '../recipe-page/recipe-page.component';
 @Component({
   selector: 'app-side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.scss']
+  styleUrls: ['./side-menu.component.scss'],
 })
-
-
 export class SideMenuComponent {
+  constructor(private router: Router) {}
 
-    constructor(private router: Router) { }
+  ngOnInit(): void {}
 
-    ngOnInit(): void {
-    }
+  moveToRecipe() {
+    this.router.navigate(['/recipe']);
+  }
 
-    moveToRecipe() {
-        this.router.navigate(['/name-search']);
-    }
-
-    moveToIngredient() {
-        this.router.navigate(['/ingredient']);
-    }
+  moveToIngredient() {
+    this.router.navigate(['/ingredient']);
+  }
 }
