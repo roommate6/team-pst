@@ -29,7 +29,11 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { FormBuilder ,FormGroup, FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterPageComponent } from './register-page/register-page.component'
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { SearchPageComponent } from './search-page/search-page.component'
+import { NzListModule } from 'ng-zorro-antd/list';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+
 
 registerLocaleData(en);
 
@@ -42,7 +46,9 @@ registerLocaleData(en);
     IngredientListComponent,
     SideMenuComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    SearchPageComponent,
+    RecipeCardComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,8 @@ registerLocaleData(en);
     NzFormModule,
     NzInputModule,
     NzCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzListModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

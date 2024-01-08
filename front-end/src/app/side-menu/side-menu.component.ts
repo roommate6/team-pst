@@ -18,7 +18,7 @@ export class SideMenuComponent {
     }
 
     moveToRecipe() {
-        this.router.navigate(['/recipe']);
+        this.router.navigate(['/name-search']);
     }
 
     moveToIngredient() {

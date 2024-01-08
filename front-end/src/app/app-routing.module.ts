@@ -6,10 +6,11 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { IngredientPageComponent } from './ingredient-page/ingredient-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
-
+import { SearchPageComponent } from './search-page/search-page.component';
 
 const routes: Routes = [
   {path : '',redirectTo:'login', pathMatch: 'full'},
+  {path : 'name-search', component: SearchPageComponent},
   {path : 'login', component: LoginPageComponent},
   {path : 'register', component: RegisterPageComponent},
   {path : 'recipe', component: RecipePageComponent},
