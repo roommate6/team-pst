@@ -1,0 +1,18 @@
+.card-container {
+  //Display the cards in a column;
+  display: flex;
+  flex-direction: column;
+  //Center the cards horizontally;
+  justify-content: center;
+  //Center the cards vertically;
+  align-items: center;
+  //Set the width of the cards;
+  width: 100%;
+  //Set the height of the cards;
+  height: 100%;
+  //Set the margin of the cards;
+  margin: 50px;
+  //Set the padding of the cards;
+  padding: 50px;
+
+}
