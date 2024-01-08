@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using YummyGen.Application;
 using YummyGen.DataAccess;
 using YummyGen.DataAccess.Repositories;
@@ -10,9 +11,22 @@ namespace YummyGenAPI
 {
     public class Startup
     {
-        public static void RegisterServices(WebApplicationBuilder builder)
+        public static void RegisterServices(WebApplicationBuilder builder, string originsName, string originsUrl)
         {
-            builder.Services.AddControllers();
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy(name: originsName,
+								  policy =>
+								  {
+									  policy.WithOrigins(originsUrl)
+									  .AllowAnyHeader()
+									  .AllowAnyMethod()
+									  .AllowAnyOrigin();
+								  });
+			});
+
+
+			builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -29,16 +43,22 @@ namespace YummyGenAPI
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            builder.Services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
+			builder.Services.Configure<FilePathsService>(builder.Configuration.GetSection("RelativePaths"));
+
+			builder.Services.AddSingleton<IFilePathsService>(serviceProvider =>
+				serviceProvider.GetRequiredService<IOptions<FilePathsService>>().Value);
+
+			builder.Services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
             builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
             builder.Services.AddScoped<IRecipeIngredientService, RecipeIngredientService>();
             builder.Services.AddScoped<IRecipeService, RecipeService>();
             builder.Services.AddScoped<IIngredientService, IngredientService>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-
+            builder.Services.AddScoped<IImageService, ImageService>();
         }
     }
 }

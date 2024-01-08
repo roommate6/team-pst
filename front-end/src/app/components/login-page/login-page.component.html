@@ -1,13 +1,19 @@
 <div class="login-zone">
-  <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="loginClick()">
-
+  <form
+    nz-form
+    [formGroup]="loginForm"
+    class="login-form"
+    (ngSubmit)="handleSubmitEvent()"
+  >
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
         <nz-input-group nzPrefixIcon="user">
           <input
-          type="text"
-          nz-input
-          formControlName="username" placeholder="Username" />
+            type="text"
+            nz-input
+            formControlName="username"
+            placeholder="Username"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
@@ -16,17 +22,26 @@
       <nz-form-control nzErrorTip="Please input your Password!">
         <nz-input-group nzPrefixIcon="lock">
           <input
-          type="password"
-          nz-input
-          formControlName="password"
-          placeholder="Password" />
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Password"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
 
-
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    <button
+      nz-button
+      class="login-form-button login-form-margin"
+      [nzType]="'primary'"
+    >
+      Log in
+    </button>
     Or
-    <a routerLink="/register">register now!</a>
+    <span class="register-link" (click)="handleRegisterLinkClick()"
+      >register now</span
+    >
+    !
   </form>
-  </div>
+</div>
