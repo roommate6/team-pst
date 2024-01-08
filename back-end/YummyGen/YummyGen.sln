@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YummyGen.DataAccess", "Yumm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YummyGen.Domain", "YummyGen.Domain\YummyGen.Domain.csproj", "{6716D956-9D9F-4B96-8F3C-117E3C4550F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YummyGen.Controller", "YummyGen.Controller\YummyGen.Controller.csproj", "{8F6FB56F-E330-41FC-B4B1-CB935113EB40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YummyGen.Controller", "YummyGen.Controller\YummyGen.Controller.csproj", "{8F6FB56F-E330-41FC-B4B1-CB935113EB40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YummyGen.Application", "YummyGen.Application\YummyGen.Application.csproj", "{9FD7193D-DF09-4D7A-9089-479B36C42514}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YummyGen.Application", "YummyGen.Application\YummyGen.Application.csproj", "{9FD7193D-DF09-4D7A-9089-479B36C42514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YummyGen.UnitTests", "YummyGen.UnitTests\YummyGen.UnitTests.csproj", "{167EC9CB-0636-4B4C-8F62-ABBBD82447E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9FD7193D-DF09-4D7A-9089-479B36C42514}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD7193D-DF09-4D7A-9089-479B36C42514}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FD7193D-DF09-4D7A-9089-479B36C42514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{167EC9CB-0636-4B4C-8F62-ABBBD82447E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{167EC9CB-0636-4B4C-8F62-ABBBD82447E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{167EC9CB-0636-4B4C-8F62-ABBBD82447E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{167EC9CB-0636-4B4C-8F62-ABBBD82447E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
