@@ -14,31 +14,19 @@ namespace YummyGen.Tests
         {
             var mockRecipeIngredientRepository = new Mock<IRecipeIngredientRepository>();
             var mockRecipeRepository = new Mock<IRecipeRepository>();
+            
+            var flour = new Ingredient { Id = 1, Name = "Flour" };
+            var cheese = new Ingredient { Id = 2, Name = "Cheese" };
+            var sampleIngredients = new List<Ingredient> { flour, cheese };
+
+            var pizza = new Recipe { Id = 1, Name = "Pizza", Ingredients = sampleIngredients };
 
             var sampleRecipeIngredients = new List<RecipeIngredient>
             {
-                new RecipeIngredient { IngredientId = 1, RecipeId = 1 },
-                new RecipeIngredient { IngredientId = 2, RecipeId = 1 }
+                new RecipeIngredient { IngredientId = 1, RecipeId = 1, Recipe = pizza },
             };
+
             mockRecipeIngredientRepository.Setup(repo => repo.GetByIngredients(It.IsAny<List<int>>())).ReturnsAsync(sampleRecipeIngredients);
-
-            var sampleIngredients = new List<Ingredient>
-            {
-                new Ingredient { Id = 1, Name = "Flour" },
-                new Ingredient { Id = 2, Name = "Cheese" }
-            };
-
-            var sampleRecipes = new List<Recipe>
-            {
-                new Recipe 
-                { 
-                    Id = 1, 
-                    Name = "Pizza", 
-                    Ingredients = sampleIngredients
-                },
-            };
-
-            mockRecipeRepository.Setup(repo => repo.GetByIdWithIngredients(It.IsAny<int>())).ReturnsAsync(sampleRecipes.FirstOrDefault());
 
             var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object);
 
