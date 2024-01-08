@@ -15,13 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\YummyGen.Application\YummyGen.Application.csproj" />
     <ProjectReference Include="..\YummyGen.Controller\YummyGen.Controller.csproj" />
     <ProjectReference Include="..\YummyGen.DataAccess\YummyGen.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

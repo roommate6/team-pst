@@ -2,22 +2,25 @@ import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiConfigurations } from '../classes/apiConfigurations';
+import { EventBusService } from './event-bus.service';
+import { AppStateTracker } from '../classes/appStateTracker';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  currentUser?: User;
-  constructor(private http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private _eventBusService: EventBusService
+  ) {}
 
   login(userName: string, password: string): void {
-    const url: string = ApiConfigurations.instance.authenticationLoginUrl;
+    const loginUrl: string = ApiConfigurations.instance.authenticationLoginUrl;
     const headers = new HttpHeaders({});
 
-    let logedUser: User;
-    this.http
+    this._http
       .post(
-        url,
+        loginUrl,
         {
           userName: userName,
           password: password,
@@ -28,14 +31,33 @@ export class UserService {
       )
       .subscribe({
         next: (data: any) => {
-          logedUser = {
+          let userFromData: User = {
             id: data.id,
             firstName: data.firstName,
             lastName: data.lastName,
             userName: data.userName,
           };
-          console.log(logedUser);
+          this.setTheLoggedUserInTheAppStateTracker(userFromData);
+          this.notifyThatTheLoginWasSuccessful();
+        },
+        error: (err: any) => {
+          this.notifyThatTheLoginWasUnsuccessful();
         },
       });
+  }
+
+  private notifyThatTheLoginWasSuccessful() {
+    this._eventBusService.publish({
+      name: 'LOGIN_successful_login_event',
+    });
+  }
+  private notifyThatTheLoginWasUnsuccessful() {
+    this._eventBusService.publish({
+      name: 'LOGIN_unsuccessful_login_event',
+    });
+  }
+
+  private setTheLoggedUserInTheAppStateTracker(loggedUser: User) {
+    AppStateTracker.instance.loggedUser = loggedUser;
   }
 }

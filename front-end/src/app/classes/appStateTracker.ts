@@ -1,10 +1,17 @@
-import { Inject } from '@angular/core';
 import { User } from '../interfaces/user.interface';
 import { EventBusService } from '../services/event-bus.service';
 
-import { inject } from '@angular/core';
+import { AppInjector } from '../app.module';
 
-export class AppStateStracker {
+export class AppStateTracker {
+  private static _instance: AppStateTracker | null = null;
+  private _loggedUser?: User;
+  private _eventBusService!: EventBusService;
+
+  private constructor() {
+    this._eventBusService = AppInjector.get(EventBusService);
+  }
+
   get loggedUser(): User {
     if (this._loggedUser === undefined) {
       throw new Error('User undefined.');
@@ -15,20 +22,10 @@ export class AppStateStracker {
     this._loggedUser = user;
   }
 
-  private _loggedUser?: User;
-
-  private _eventBusService!: EventBusService;
-
-  private constructor() {
-    this._eventBusService = inject(EventBusService);
-  }
-
-  static get instance(): AppStateStracker {
-    if (AppStateStracker._instance === null) {
-      AppStateStracker._instance = new AppStateStracker();
+  static get instance(): AppStateTracker {
+    if (AppStateTracker._instance === null) {
+      AppStateTracker._instance = new AppStateTracker();
     }
-    return AppStateStracker._instance;
+    return AppStateTracker._instance;
   }
-
-  private static _instance: AppStateStracker | null = null;
 }

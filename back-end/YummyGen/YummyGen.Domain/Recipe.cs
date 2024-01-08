@@ -8,5 +8,6 @@ namespace YummyGen.Domain
         public string ShortDescription { get; set; } = null!;
         public List<Ingredient> Ingredients { get; } = new();
         public List<RecipeIngredient> RecipeIngredients { get; } = new();
+        public Image Image { get; set; }
     }
 }
