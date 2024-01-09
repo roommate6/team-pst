@@ -13,11 +13,11 @@ export class SideMenuComponent {
 
   ngOnInit(): void {}
 
-  moveToRecipe() {
+  moveToNameSearch() {
     this.router.navigate(['/name-search']);
   }
 
-  moveToIngredient() {
-    this.router.navigate(['/ingredient']);
+  moveToIngredientSearch() {
+    this.router.navigate(['/ingredient-search']);
   }
 }

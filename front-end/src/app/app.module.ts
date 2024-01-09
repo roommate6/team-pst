@@ -33,6 +33,7 @@ import { Router } from '@angular/router';
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { SearchNamePageComponent } from './components/search-name-page/search-name-page.component';
+import { SearchIngredientPageComponent } from './components/search-ingredient-page/search-ingredient-page.component';
 
 export let AppInjector: Injector;
 
@@ -51,6 +52,7 @@ registerLocaleData(en);
     DashboardPageComponent,
     RecipeCardComponent,
     SearchNamePageComponent,
+    SearchIngredientPageComponent,
   ],
   imports: [
     BrowserModule,

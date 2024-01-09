@@ -4,6 +4,7 @@ import { Recipe } from 'src/app/interfaces/recipe.interface';
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { debounce, interval, of, switchMap, tap } from 'rxjs';
 import recipeData from '../../services/recipes.json';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-name-page',
@@ -14,13 +15,23 @@ export class SearchNamePageComponent {
   searchTerm = '';
   searchWord: FormControl = new FormControl();
 
-  public recipe_list: Recipe[] = recipeData;
-  public result_list: Recipe[] = [];
+  public recipe_list: Recipe[] = recipeData; // List of all the recipes
+  public result_list: Recipe[] = [];        // List of the recipes that match the search term
   isLoading = false;
 
   //List of the cards with the steps
   recipeCardList: RecipeCardComponent[] = [];
   recipeCard: RecipeCardComponent = new RecipeCardComponent();
+  router: Router;
+
+
+
+  constructor(router: Router) {
+    this.router = router;
+  }
+
+
+
 
   ngOnInit(): void {
     console.log('Search page accessed!');
@@ -43,11 +54,9 @@ export class SearchNamePageComponent {
       );
   }
 
-  constructor() {
-    this.createCardList();
-  }
 
-  /**/
+  /*WAS USING FOR TESTING THE BASIC SEARCH, MAY NOT USE IT IN THE FINAL PROJECT
+    WIL BE DELETED LATER IF NECESSARY  */
   searchRecipes(keyword: string) {
     // Call your service here to search for recipes using the searchTerm
     // Update the result_list with the resulted recipes
@@ -59,14 +68,22 @@ export class SearchNamePageComponent {
     return of(result);
   }
 
-  createCardList() {
-    // Create the list of cards with the steps
-    //this.stepCardList = this.result_list.map(recipe => new StepCardComponent(recipe));
-    for (let i = 0; i < this.recipe_list.length; i++) {
-      this.recipeCard = new RecipeCardComponent();
-      this.recipeCard.recipeName = this.recipe_list[i].Name;
-      this.recipeCard.recipeDescription = this.recipe_list[i].Description;
-      this.recipeCard.recipeImageUrl = this.recipe_list[i].ImageURL;
-    }
+
+  // Search for recipes and display them as cards
+  // Search so the searchTerm is included in the recipe name (must both be turned lowercase)
+  searchRecipe() {
+    this.result_list = this.recipe_list.filter((recipe) =>
+      recipe.Name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
+
+
+  moveToNameSearch() {
+    this.router.navigate(['/name-search']);
+  }
+
+  moveToIngredientSearch() {
+    this.router.navigate(['/ingredient-search']);
+  }
+
 }

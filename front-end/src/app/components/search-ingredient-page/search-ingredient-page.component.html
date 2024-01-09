@@ -23,37 +23,33 @@
 
 
 
-
 <!--The actual search page-->
+<h1>Search Page : Ingredient</h1>
 
-<!--Add form control so that text changes are being kept tack of-->
-<h1>Search Page : Name</h1>
+<!--Add the form-controls from the search_bars list -->
+<tr *ngFor = "let search_bar of search_bars">
+  <nz-input-group class="ingredient-bar"  nzSearch nzSize="default">
+    <input
+      type="text"
+      nz-input
+      placeholder="Ingredient name"
+    />
+  </nz-input-group>
+</tr>
 
-<nz-input-group nzSearch nzSize="large">
-  <input
-    [(ngModel)]="searchTerm"
-    type="text"
-    nz-input
-    placeholder="input search text"
-  />
-</nz-input-group>
+<!-- Button that will add a new search box -->
+<button class="addButton" nz-button nzType="primary" nzShape="circle" (click)="addSearchBox()">+</button>
 
 
 <!-- Button that will start the search -->
-<button nz-button nzType="primary" (click)="searchRecipe()">
+<button nzType="primary" (click)="searchRecipe()">
   <span nz-icon nzType="search"></span>
   Search
 </button>
-<span *ngIf="isLoading">now loading...</span>
 
-<table>
-  <tr *ngFor="let recipe of recipe_list">
-    <!--Only show if the searchTerm is present in the recipe.Name-->
-    <td *ngIf="recipe.Name.includes(searchTerm)">{{ recipe.Name }}</td>
-  </tr>
-</table>
 
-<div class="card-container">
+<!--The list of recipes that will be displayed-->
+<div class="recipe-list">
   <tr *ngFor="let recipe of result_list">
     <app-recipe-card
       [recipeName]="recipe.Name"
@@ -64,9 +60,5 @@
 
 
 
-
-<!--Ending the side menu-->
-
 </nz-layout>
-
 </nz-layout>
