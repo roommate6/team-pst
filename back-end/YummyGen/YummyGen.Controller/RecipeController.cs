@@ -30,9 +30,9 @@ namespace YummyGen.Controller
 		}
 
 		[HttpGet("all-by-ingredients")]
-		public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredients([FromQuery] List<int> ingredientIds)
+		public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredients([FromQuery] List<string> ingredientNames)
 		{
-			var recipes = await _recipeIngredientService.GetRecipesByIngredientsWithIncludings(ingredientIds);
+			var recipes = await _recipeIngredientService.GetRecipesByIngredientsWithIncludings(ingredientNames);
 			return Ok(recipes);
 		}
 

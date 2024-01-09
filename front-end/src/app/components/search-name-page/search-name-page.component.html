@@ -1,35 +1,14 @@
 <!--The side menu-->
-<nz-layout>
-  <nz-sider nzCollapsible nzWidth="300px">
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item>
-        <span nz-icon nzType="pie-chart"></span>
-        <span>Main Page</span>
-      </li>
-      <li nz-submenu nzTitle="Search" nzIcon="user">
-        <ul>
-          <li nz-menu-item (click)="(moveToNameSearch())">Search By Name</li>
-          <li nz-menu-item (click)="(moveToIngredientSearch())">Search By Produce</li>
-        </ul>
-      </li>
-      <li nz-menu-item>
-        <span nz-icon nzType="user"></span>
-        <span>User</span>
-      </li>
-    </ul>
-  </nz-sider>
-  <nz-layout>
-
-
-
+<app-side-menu/>
 
 <!--The actual search page-->
 
 <!--Add form control so that text changes are being kept tack of-->
 <h1>Search Page : Name</h1>
 
-<nz-input-group nzSearch nzSize="large">
+<div class="search-container">
+
+<nz-input-group class="search-bar"  nzSearch nzSize="large">
   <input
     [(ngModel)]="searchTerm"
     type="text"
@@ -44,14 +23,8 @@
   <span nz-icon nzType="search"></span>
   Search
 </button>
-<span *ngIf="isLoading">now loading...</span>
 
-<table>
-  <tr *ngFor="let recipe of recipe_list">
-    <!--Only show if the searchTerm is present in the recipe.Name-->
-    <td *ngIf="recipe.Name.includes(searchTerm)">{{ recipe.Name }}</td>
-  </tr>
-</table>
+</div>
 
 <div class="card-container">
   <tr *ngFor="let recipe of result_list">
@@ -61,12 +34,3 @@
     ></app-recipe-card>
   </tr>
 </div>
-
-
-
-
-<!--Ending the side menu-->
-
-</nz-layout>
-
-</nz-layout>

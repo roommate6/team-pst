@@ -22,7 +22,7 @@ namespace YummyGen.UnitTests
 
             var service = new IngredientService(mockRepository.Object);
 
-            var result = await service.GetAllIngredients();
+            var result = await service.GetAllWithIncludings();
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
@@ -40,7 +40,7 @@ namespace YummyGen.UnitTests
 
             var service = new IngredientService(mockRepository.Object);
 
-            var result = await service.AddIngredient(ingredientToAdd);
+            var result = await service.AddIngredient(ingredientToAdd, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("Flour", result.Name);

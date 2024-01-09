@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     this._eventBusService
       .subscribe('LOGIN_successful_login_event')
       .subscribe((event: any) => {
-        this._router.navigate(['menu']);
+        this._router.navigate(['dashboard']);
       });
 
     this._eventBusService

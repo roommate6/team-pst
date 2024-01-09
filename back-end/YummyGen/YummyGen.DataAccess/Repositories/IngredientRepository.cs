@@ -20,5 +20,10 @@ namespace YummyGen.DataAccess.Repositories
 		{
 			return await context.Set<Ingredient>().Include(i => i.Image).FirstAsync(i => i.Id == id);
 		}
+
+		public async Task<IEnumerable<Ingredient>> GetIngredientsByNames(List<string> ingredientNames)
+		{
+            return await context.Set<Ingredient>().Where(i => ingredientNames.Contains(i.Name)).ToListAsync();
+        }
 	}
 }

@@ -1,1 +1,8 @@
-<p>dashboard-page works!</p>
+<app-side-menu/>
+<div class="card-container">
+
+ <tr *ngFor = "let recipe of recipe_list">
+  <app-recipe-card [recipeName]="recipe.Name" [recipeDescription]="recipe.Description"></app-recipe-card>
+</tr>
+
+</div>

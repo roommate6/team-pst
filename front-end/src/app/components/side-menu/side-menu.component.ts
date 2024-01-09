@@ -9,9 +9,15 @@ import { RecipePageComponent } from '../recipe-page/recipe-page.component';
   styleUrls: ['./side-menu.component.scss'],
 })
 export class SideMenuComponent {
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+
+  moveToDashboard() {
+    this.router.navigate(['/dashboard']);
+    }
 
   moveToNameSearch() {
     this.router.navigate(['/name-search']);

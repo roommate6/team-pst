@@ -14,6 +14,7 @@ namespace YummyGen.Tests
         {
             var mockRecipeIngredientRepository = new Mock<IRecipeIngredientRepository>();
             var mockRecipeRepository = new Mock<IRecipeRepository>();
+            var mockIngredientRepository = new Mock<IIngredientRepository>();
             
             var flour = new Ingredient { Id = 1, Name = "Flour" };
             var cheese = new Ingredient { Id = 2, Name = "Cheese" };
@@ -28,9 +29,9 @@ namespace YummyGen.Tests
 
             mockRecipeIngredientRepository.Setup(repo => repo.GetByIngredients(It.IsAny<List<int>>())).ReturnsAsync(sampleRecipeIngredients);
 
-            var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object);
+            var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object, mockIngredientRepository.Object);
 
-            var result = await service.GetRecipesByIngredients(new List<int> { 1, 2 });
+            var result = await service.GetRecipesByIngredients(new List<string>() { "Flour", "Cheese" });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
@@ -42,6 +43,7 @@ namespace YummyGen.Tests
         {
             var mockRecipeIngredientRepository = new Mock<IRecipeIngredientRepository>();
             var mockRecipeRepository = new Mock<IRecipeRepository>();
+            var mockIngredientRepository = new Mock<IIngredientRepository>();
 
             var ingredientId = 1;
             var recipeId = 1;
@@ -67,7 +69,7 @@ namespace YummyGen.Tests
                 .Setup(repo => repo.GetByIdWithIngredients(It.IsAny<int>()))
                 .ReturnsAsync(updatedRecipe);
 
-            var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object);
+            var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object, mockIngredientRepository.Object);
 
             var result = await service.AddIngredientToRecipe(ingredientId, recipeId);
 
