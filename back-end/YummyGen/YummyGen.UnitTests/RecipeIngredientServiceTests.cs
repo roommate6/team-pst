@@ -27,11 +27,11 @@ namespace YummyGen.Tests
                 new RecipeIngredient { IngredientId = 1, RecipeId = 1, Recipe = pizza },
             };
 
-            mockRecipeIngredientRepository.Setup(repo => repo.GetByIngredients(It.IsAny<List<int>>())).ReturnsAsync(sampleRecipeIngredients);
+            mockRecipeIngredientRepository.Setup(repo => repo.GetByIngredientsWithIncludings(It.IsAny<List<int>>())).ReturnsAsync(sampleRecipeIngredients);
 
             var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object, mockIngredientRepository.Object);
 
-            var result = await service.GetRecipesByIngredients(new List<string>() { "Flour", "Cheese" });
+            var result = await service.GetRecipesByIngredientsWithIncludings(new List<string>() { "Flour", "Cheese" });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
@@ -66,12 +66,12 @@ namespace YummyGen.Tests
             };
 
             mockRecipeRepository
-                .Setup(repo => repo.GetByIdWithIngredients(It.IsAny<int>()))
+                .Setup(repo => repo.GetByIdWithIngredientsAndWithIncludings(It.IsAny<int>()))
                 .ReturnsAsync(updatedRecipe);
 
             var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object, mockIngredientRepository.Object);
 
-            var result = await service.AddIngredientToRecipe(ingredientId, recipeId);
+            var result = await service.AddIngredientToRecipeWithIncludings(ingredientId, recipeId);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("Pizza", result.Name);

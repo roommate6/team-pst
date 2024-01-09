@@ -18,7 +18,7 @@ namespace YummyGen.UnitTests
                 new Ingredient { Id = 1, Name = "Salt" },
                 new Ingredient { Id = 2, Name = "Sugar" }
             };
-            mockRepository.Setup(repo => repo.GetAll()).ReturnsAsync(sampleIngredients);
+            mockRepository.Setup(repo => repo.GetAllWithIncludings()).ReturnsAsync(sampleIngredients);
 
             var service = new IngredientService(mockRepository.Object);
 

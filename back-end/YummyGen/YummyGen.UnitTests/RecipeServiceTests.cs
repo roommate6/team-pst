@@ -28,7 +28,7 @@ namespace YummyGen.Tests
 
             var service = new RecipeService(mockRepository.Object);
 
-            var result = await service.AddRecipe(recipeToAdd);
+            var result = await service.AddRecipe(recipeToAdd, null);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("Pancakes", result.Name);
@@ -43,11 +43,11 @@ namespace YummyGen.Tests
                 new Recipe { Id = 1, Name = "Pancakes" },
                 new Recipe { Id = 2, Name = "Pizza" }
             };
-            mockRepository.Setup(repo => repo.GetAllWithIngredients()).ReturnsAsync(sampleRecipes);
+            mockRepository.Setup(repo => repo.GetAllWithIngredientsAndWithIncludings()).ReturnsAsync(sampleRecipes);
 
             var service = new RecipeService(mockRepository.Object);
 
-            var result = await service.GetAllRecipes();
+            var result = await service.GetAllRecipesWithIncludings();
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
