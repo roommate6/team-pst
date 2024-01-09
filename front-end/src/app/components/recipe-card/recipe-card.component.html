@@ -3,5 +3,8 @@
   <img class="recipe-img" src="recipeImageUrl" alt="recipeImage" />
   <div class="recipe-name" [textContent]="recipeName"></div>
   <div class="recipe-description" [textContent]="recipeDescription"></div>
-  <button class="recipe-button" (click)="onRecipeClick()">View Recipe</button>
+  <button class="addButton" nz-button nzType="default" (click)="onRecipeClick()">
+    <span nz-icon nzType="link"></span>
+    View Recipe
+  </button>
 </div>

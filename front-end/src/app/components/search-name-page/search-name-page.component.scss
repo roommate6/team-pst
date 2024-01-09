@@ -1,3 +1,16 @@
+h1 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 48px;
+  color: #000000;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+
+
 .card-container {
     //Display the cards in a column;
     display: flex;
@@ -12,7 +25,22 @@
     height: 100%;
     //Set the margin of the cards;
     margin: 50px;
-    //Set the padding of the cards;
-    padding: 50px;
-  
+
+
   }
+
+
+.search-bar{
+    display: flex;
+    flex-direction: column;
+    //Center the search bar horizontally;
+    justify-content: center;
+    //Set the width of the search bar;
+    width: 500px;
+    margin-bottom: 10px;
+  }
+.search-container{
+  margin-left: 10px;
+  margin-bottom: 200px;
+
+}

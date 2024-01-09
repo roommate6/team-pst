@@ -1,3 +1,14 @@
+h1 {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 48px;
+  color: #000000;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
 .ingredient-bar{
   display:block;
   flex-direction: column;
@@ -28,4 +39,5 @@
   align-items: left;
   gap: 10px;
   margin-bottom: 10px;
+  margin-left: 10px;
 }
