@@ -1,4 +1,5 @@
-﻿using YummyGen.Domain.Dto;
+﻿using YummyGen.Domain;
+using YummyGen.Domain.Dto;
 using YummyGen.Domain.Interfaces;
 
 namespace YummyGen.Application
@@ -19,9 +20,9 @@ namespace YummyGen.Application
             return result;
         }
 
-        public async Task<IngredientDto> AddIngredient(AddIngredientDto ingredientDto)
+        public async Task<IngredientDto> AddIngredient(AddIngredientDto addIngredientDto, Image image)
         {
-            var ingredient = Mapper.ToIngredient(ingredientDto);
+            var ingredient = Mapper.ToIngredient(addIngredientDto, image);
             var addedIngredient = await ingredientRepository.Add(ingredient);
             var result = Mapper.ToIngredientDto(addedIngredient);
             return result;

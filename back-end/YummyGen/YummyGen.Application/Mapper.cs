@@ -36,7 +36,8 @@ namespace YummyGen.Application
 			return new IngredientDto
 			{
 				Id = ingredient.Id,
-				Name = ingredient.Name
+				Name = ingredient.Name,
+				ImageId = ingredient.Image.Id
 			};
 		}
 
@@ -45,6 +46,15 @@ namespace YummyGen.Application
 			return new Ingredient
 			{
 				Name = ingredient.Name
+			};
+		}
+
+		public static Ingredient ToIngredient(AddIngredientDto ingredient, Image image)
+		{
+			return new Ingredient
+			{
+				Name = ingredient.Name,
+				Image = image
 			};
 		}
 
@@ -83,6 +93,15 @@ namespace YummyGen.Application
 			return new Image
 			{
 				Format = Path.GetExtension(addImageDto.ImageFile.FileName)[1..]
+			};
+		}
+
+		public static Image ToImage(ImageDto imageDto)
+		{
+			return new Image
+			{
+				Id = imageDto.Id,
+				Format = imageDto.Format
 			};
 		}
 	}

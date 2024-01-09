@@ -37,7 +37,7 @@ namespace YummyGen.Controller
 
 				return File(imageBytes, $"image/{imageDto.Format}");
 			}
-			return StatusCode(500);
+			return StatusCode(500, "Image missing from back end file system.");
 		}
 
 		[HttpPost]
