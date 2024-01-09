@@ -6,24 +6,24 @@ namespace YummyGen.Application
 {
     public class RecipeIngredientService : IRecipeIngredientService
     {
-        private readonly IRecipeIngredientRepository recipeIngredientRepository;
-        private readonly IRecipeRepository recipeRepository;
+        private readonly IRecipeIngredientRepository _recipeIngredientRepository;
+        private readonly IRecipeRepository _recipeRepository;
 
         public RecipeIngredientService(IRecipeIngredientRepository recipeIngredientRepository, IRecipeRepository recipeRepository)
         {
-            this.recipeIngredientRepository = recipeIngredientRepository ?? throw new ArgumentNullException(nameof(recipeIngredientRepository));
-            this.recipeRepository = recipeRepository ?? throw new ArgumentNullException(nameof(recipeRepository));
+            _recipeIngredientRepository = recipeIngredientRepository ?? throw new ArgumentNullException(nameof(recipeIngredientRepository));
+            _recipeRepository = recipeRepository ?? throw new ArgumentNullException(nameof(recipeRepository));
         }
 
-        public async Task<List<RecipeDto>> GetRecipesByIngredients(List<int> ingredientIds)
+        public async Task<List<RecipeDto>> GetRecipesByIngredientsWithIncludings(List<int> ingredientIds)
         {
-            var recipeIngredients = await recipeIngredientRepository.GetByIngredients(ingredientIds);
+            var recipeIngredients = await _recipeIngredientRepository.GetByIngredientsWithIncludings(ingredientIds);
             var recipes = recipeIngredients.Select(ri => ri.Recipe).ToList();
             var result = recipes.Select(r => Mapper.ToRecipeDto(r)).ToList();
             return result;
         }
 
-        public async Task<RecipeDto> AddIngredientToRecipe(int ingredientId, int recipeId)
+        public async Task<RecipeDto> AddIngredientToRecipeWithIncludings(int ingredientId, int recipeId)
         {
             var recipeIngredient = new RecipeIngredient
             {
@@ -31,9 +31,9 @@ namespace YummyGen.Application
                 RecipeId = recipeId
             };
 
-            await recipeIngredientRepository.Add(recipeIngredient);
+            await _recipeIngredientRepository.Add(recipeIngredient);
 
-            var updatedRecipe = await recipeRepository.GetByIdWithIngredients(recipeId);
+            var updatedRecipe = await _recipeRepository.GetByIdWithIngredientsAndWithIncludings(recipeId);
             var result = Mapper.ToRecipeDto(updatedRecipe);
             return result;
         }

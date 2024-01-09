@@ -10,19 +10,23 @@ namespace YummyGen.DataAccess.Repositories
         {
         }
 
-        public async Task<Recipe> GetByIdWithIngredients(int id)
+        public async Task<Recipe> GetByIdWithIngredientsAndWithIncludings(int id)
         {
             var recipe = await context.Recipes
                 .Where(r => r.Id == id)
                 .Include(r => r.Ingredients)
+                    .ThenInclude(i => i.Image)
+                .Include(r => r.Image)
                 .FirstOrDefaultAsync();
             return recipe;
         }
 
-        public async Task<List<Recipe>> GetAllWithIngredients()
+        public async Task<List<Recipe>> GetAllWithIngredientsAndWithIncludings()
         {
             var recipes = await context.Recipes
                 .Include(r => r.Ingredients)
+                    .ThenInclude(i => i.Image)
+                .Include(r => r.Image)
                 .ToListAsync();
             return recipes;
         }

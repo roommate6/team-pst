@@ -2,7 +2,7 @@
 {
     public interface IRecipeRepository : IRepository<Recipe>
     {
-        Task<List<Recipe>> GetAllWithIngredients();
-        Task<Recipe> GetByIdWithIngredients(int id);
+        Task<List<Recipe>> GetAllWithIngredientsAndWithIncludings();
+        Task<Recipe> GetByIdWithIngredientsAndWithIncludings(int id);
     }
 }

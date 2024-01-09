@@ -19,6 +19,11 @@ namespace YummyGen.Application
 				recipeDto.Ingredients = recipe.Ingredients.Select(i => ToIngredientDto(i)).ToList();
 			}
 
+			if (recipe.Image != null)
+			{
+				recipeDto.ImageId = recipe.Image.Id;
+			}
+
 			return recipeDto;
 		}
 
@@ -28,6 +33,16 @@ namespace YummyGen.Application
 			{
 				Name = recipe.Name,
 				ShortDescription = recipe.ShortDescription
+			};
+		}
+
+		public static Recipe ToRecipe(AddRecipeDto recipe, Image image)
+		{
+			return new Recipe
+			{
+				Name = recipe.Name,
+				ShortDescription = recipe.ShortDescription,
+				Image = image
 			};
 		}
 

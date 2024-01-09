@@ -1,48 +1,85 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using YummyGen.Application;
 using YummyGen.Domain.Dto;
 using YummyGen.Domain.Interfaces;
 
 namespace YummyGen.Controller
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class RecipeController : ControllerBase
-    {
-        private readonly IRecipeIngredientService recipeIngredientService;
-        private readonly IRecipeService recipeService;
+	[ApiController]
+	[Route("api/[controller]")]
+	public class RecipeController : ControllerBase
+	{
+		private readonly IRecipeIngredientService _recipeIngredientService;
+		private readonly IRecipeService _recipeService;
+		private readonly IImageService _imageService;
+		private readonly IFilePathsService _filePathsService;
+		private readonly IImageRepository _imageRepository;
 
-        public RecipeController(IRecipeIngredientService recipeIngredientService, IRecipeService recipeService)
-        {
-            this.recipeIngredientService = recipeIngredientService ?? throw new ArgumentNullException(nameof(recipeIngredientService));
-            this.recipeService = recipeService ?? throw new ArgumentNullException(nameof(recipeService));
-        }
+		public RecipeController(
+			IRecipeIngredientService recipeIngredientService,
+			IRecipeService recipeService,
+			IImageService imageService,
+			IFilePathsService filePathsService,
+			IImageRepository imageRepository)
+		{
+			_recipeIngredientService = recipeIngredientService ?? throw new ArgumentNullException(nameof(recipeIngredientService));
+			_recipeService = recipeService ?? throw new ArgumentNullException(nameof(recipeService));
+			_imageService = imageService ?? throw new ArgumentNullException(nameof(imageService));
+			_filePathsService = filePathsService ?? throw new ArgumentNullException(nameof(filePathsService));
+			_imageRepository = imageRepository ?? throw new ArgumentNullException(nameof(imageRepository));
+		}
 
-        [HttpGet("all-by-ingredients")]
-        public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredients([FromQuery] List<int> ingredientIds)
-        {
-            var recipes = await recipeIngredientService.GetRecipesByIngredients(ingredientIds);
-            return Ok(recipes);
-        }
+		[HttpGet("all-by-ingredients")]
+		public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredients([FromQuery] List<int> ingredientIds)
+		{
+			var recipes = await _recipeIngredientService.GetRecipesByIngredientsWithIncludings(ingredientIds);
+			return Ok(recipes);
+		}
 
-        [HttpGet("all")]
-        public async Task<ActionResult<List<RecipeDto>>> GetAllRecipes()
-        {
-            var recipes = await recipeService.GetAllRecipes();
-            return Ok(recipes);
-        }
+		[HttpGet("all")]
+		public async Task<ActionResult<List<RecipeDto>>> GetAllRecipes()
+		{
+			var recipes = await _recipeService.GetAllRecipesWithIncludings();
+			return Ok(recipes);
+		}
 
-        [HttpPost("add")]
-        public async Task<ActionResult<RecipeDto>> AddRecipe([FromBody] AddRecipeDto addRecipeDto)
-        {
-            var result = await recipeService.AddRecipe(addRecipeDto);
-            return Ok(result);
-        }
+		[HttpPost("add")]
+		public async Task<ActionResult<RecipeDto>> AddRecipe([FromForm] AddRecipeDto addRecipeDto, [FromForm] AddImageDto addImageDto)
+		{
+			try
+			{
+				if (addImageDto.ImageFile != null && addImageDto.ImageFile.Length > 0)
+				{
+					var addedImage = await _imageService.AddImage(addImageDto);
 
-        [HttpPost("add-ingredient")]
-        public async Task<ActionResult<RecipeDto>> AddIngredientToRecipe([FromQuery] int ingredientId, [FromQuery] int recipeId)
-        {
-            var result = await recipeIngredientService.AddIngredientToRecipe(ingredientId, recipeId);
-            return Ok(result);
-        }
-    }
+					string fileName = addedImage.Id.ToString() + "." + addedImage.Format;
+
+					string filePath = Path.Combine(_filePathsService.AbsolutePathToImages, fileName);
+
+					using (var stream = new FileStream(filePath, FileMode.Create))
+					{
+						await addImageDto.ImageFile.CopyToAsync(stream);
+					}
+
+					var image = await _imageRepository.GetById(addedImage.Id);
+					var recipeDto = await _recipeService.AddRecipe(addRecipeDto, image);
+
+					return Ok(recipeDto);
+				}
+
+				return BadRequest("No image provided in the request.");
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Internal server error: {ex.Message}");
+			}
+		}
+
+		[HttpPost("add-ingredient")]
+		public async Task<ActionResult<RecipeDto>> AddIngredientToRecipe([FromQuery] int ingredientId, [FromQuery] int recipeId)
+		{
+			var result = await _recipeIngredientService.AddIngredientToRecipeWithIncludings(ingredientId, recipeId);
+			return Ok(result);
+		}
+	}
 }
