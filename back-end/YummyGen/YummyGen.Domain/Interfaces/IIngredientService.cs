@@ -6,6 +6,8 @@ namespace YummyGen.Application
     public interface IIngredientService
     {
         Task<IngredientDto> AddIngredient(AddIngredientDto ingredientDto, Image image);
-        Task<List<IngredientDto>> GetAllIngredients();
-    }
+        Task<List<IngredientDto>> GetAllWithIncludings();
+        Task<IngredientDto> GetIngredientByIdWithIncludings(int id);
+
+	}
 }

@@ -33,12 +33,16 @@ namespace YummyGen.Application
 
 		public static IngredientDto ToIngredientDto(Ingredient ingredient)
 		{
-			return new IngredientDto
+			var ingredientDto = new IngredientDto
 			{
 				Id = ingredient.Id,
-				Name = ingredient.Name,
-				ImageId = ingredient.Image.Id
+				Name = ingredient.Name
 			};
+			if (ingredient.Image != null)
+			{
+				ingredientDto.ImageId = ingredient.Image.Id;
+			}
+			return ingredientDto;
 		}
 
 		public static Ingredient ToIngredient(AddIngredientDto ingredient)

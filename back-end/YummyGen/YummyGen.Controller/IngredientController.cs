@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using YummyGen.Application;
 using YummyGen.Domain.Dto;
 using YummyGen.Domain.Interfaces;
@@ -30,10 +29,17 @@ namespace YummyGen.Controller
 			_ingredientRepository = ingredientRepository ?? throw new ArgumentNullException(nameof(ingredientRepository));
 		}
 
+		[HttpGet("{id}")]
+		public async Task<ActionResult<IngredientDto>> GetIngredientById(int id)
+		{
+			var ingredientDto = await _ingredientService.GetIngredientByIdWithIncludings(id);
+			return Ok(ingredientDto);
+		}
+
 		[HttpGet("all")]
 		public async Task<ActionResult<List<IngredientDto>>> GetAllIngredients()
 		{
-			var ingredients = await _ingredientService.GetAllIngredients();
+			var ingredients = await _ingredientService.GetAllWithIncludings();
 			return Ok(ingredients);
 		}
 
@@ -56,7 +62,7 @@ namespace YummyGen.Controller
 					}
 
 					var image = await _imageRepository.GetById(addedImage.Id);
-					var ingredientDto = await _ingredientService.AddIngredient(addIngredientDto,image);
+					var ingredientDto = await _ingredientService.AddIngredient(addIngredientDto, image);
 
 					return Ok(ingredientDto);
 				}
