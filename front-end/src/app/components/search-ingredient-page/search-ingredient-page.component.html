@@ -19,7 +19,7 @@
       </li>
     </ul>
   </nz-sider>
-  <nz-layout>
+<nz-layout>
 
 
 
@@ -27,6 +27,7 @@
 <h1>Search Page : Ingredient</h1>
 
 <!--Add the form-controls from the search_bars list -->
+<div class="ingredient-bar-container">
 <tr *ngFor = "let search_bar of search_bars">
   <nz-input-group class="ingredient-bar"  nzSearch nzSize="default">
     <input
@@ -36,13 +37,16 @@
     />
   </nz-input-group>
 </tr>
+</div>
 
 <!-- Button that will add a new search box -->
-<button class="addButton" nz-button nzType="primary" nzShape="circle" (click)="addSearchBox()">+</button>
-
+<button class="addButton" nz-button nzType="primary" (click)="addSearchBox()">
+  <span nz-icon nzType="plus"></span>
+  Add Search Box
+</button>
 
 <!-- Button that will start the search -->
-<button nzType="primary" (click)="searchRecipe()">
+<button class="addButton" nz-button nzType="primary" (click)="searchRecipe()">
   <span nz-icon nzType="search"></span>
   Search
 </button>
