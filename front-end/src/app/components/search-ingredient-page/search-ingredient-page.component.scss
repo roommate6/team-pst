@@ -1,16 +1,13 @@
-h1 {
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 48px;
-  color: #000000;
-  margin-bottom: 10px;
-  margin-left: 10px;
+.main-container {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.ingredient-bar{
-  display:block;
+.ingredient-bar {
+  display: block;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -19,25 +16,19 @@ h1 {
   width: 300px;
   height: 100%;
   background-color: #ffffff;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
-[nz-button] {
-  margin-right: 8px;
-  margin-bottom: 12px;
-}
-
 .addButton {
-  width: 150px;
+  width: 100%;
   height: auto;
 }
 
-.ingredient-bar-container{
+.ingredient-search-bar-container {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
+  justify-content: flex-start;
   gap: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Recipe } from 'src/app/interfaces/recipe.interface';
 import recipeData from '../../services/recipes.json';
@@ -10,33 +9,30 @@ import recipeData from '../../services/recipes.json';
   styleUrls: ['./search-ingredient-page.component.scss'],
 })
 export class SearchIngredientPageComponent {
-  router: Router;
-
   //Create a list of nz-input components with the default size
-  public search_bars: FormControl[] = [new FormControl()];
+  public searchBars: FormControl[] = [new FormControl()];
   public search_terms: string[] = [''];
   numberOfTerms = 1;
 
   public recipe_list: Recipe[] = recipeData; // List of all the recipes
   public result_list: Recipe[] = []; // List of the recipes that match the search term
 
-  constructor(router: Router) {
-    this.router = router;
+  constructor() {
     //Create a nz-input component with the default size
     this.search_terms.push('');
     //Set the formControl value to the search term
-    this.search_bars[this.numberOfTerms - 1].setValue(
+    this.searchBars[this.numberOfTerms - 1].setValue(
       this.search_terms[this.numberOfTerms - 1]
     );
   }
 
   addSearchBox() {
-    this.search_bars.push(new FormControl());
+    this.searchBars.push(new FormControl());
     this.search_terms.push('');
     this.numberOfTerms++;
 
     //Set the formControl value to the search term
-    this.search_bars[this.numberOfTerms - 1].setValue(
+    this.searchBars[this.numberOfTerms - 1].setValue(
       this.search_terms[this.numberOfTerms - 1]
     );
   }
@@ -47,7 +43,8 @@ export class SearchIngredientPageComponent {
 
     //Get the search terms
     for (let i = 0; i < this.numberOfTerms; i++) {
-      this.search_terms[i] = this.search_bars[i].value;
+      this.search_terms[i] = this.searchBars[i].value;
+      console.log(this.searchBars[i].value);
     }
 
     //Search the recipes
@@ -82,13 +79,5 @@ export class SearchIngredientPageComponent {
         this.result_list.push(recipe);
       }
     }
-  }
-
-  moveToNameSearch() {
-    this.router.navigate(['/name-search']);
-  }
-
-  moveToIngredientSearch() {
-    this.router.navigate(['/ingredient-search']);
   }
 }
