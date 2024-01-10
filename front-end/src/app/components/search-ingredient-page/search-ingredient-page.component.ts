@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Recipe } from 'src/app/interfaces/recipe.interface';
 import recipeData from '../../services/recipes.json';
+import { IngredientService } from 'src/app/services/ingredient.service';
+import { Ingredient } from 'src/app/models/ingredient';
 
 @Component({
   selector: 'app-search-ingredient-page',
   templateUrl: './search-ingredient-page.component.html',
   styleUrls: ['./search-ingredient-page.component.scss'],
 })
-export class SearchIngredientPageComponent {
+export class SearchIngredientPageComponent implements OnInit {
+
+  public ingredientList: Ingredient[] = [];
+  public selectedIngredientList: Ingredient[] = [];
+
+  constructor(private ingredientService: IngredientService) {}
+
   //Create a list of nz-input components with the default size
   public searchBars: FormControl[] = [new FormControl()];
   public search_terms: string[] = [''];
@@ -17,14 +25,19 @@ export class SearchIngredientPageComponent {
   public recipe_list: Recipe[] = recipeData; // List of all the recipes
   public result_list: Recipe[] = []; // List of the recipes that match the search term
 
-  constructor() {
-    //Create a nz-input component with the default size
-    this.search_terms.push('');
-    //Set the formControl value to the search term
-    this.searchBars[this.numberOfTerms - 1].setValue(
-      this.search_terms[this.numberOfTerms - 1]
-    );
+  async ngOnInit(): Promise<void> {
+    this.ingredientList = await this.ingredientService.getAllIngredients();
+    this.selectedIngredientList = this.ingredientList;
   }
+
+  // constructor() {
+  //   //Create a nz-input component with the default size
+  //   this.search_terms.push('');
+  //   //Set the formControl value to the search term
+  //   this.searchBars[this.numberOfTerms - 1].setValue(
+  //     this.search_terms[this.numberOfTerms - 1]
+  //   );
+  // }
 
   addSearchBox() {
     this.searchBars.push(new FormControl());

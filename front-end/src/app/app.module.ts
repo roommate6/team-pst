@@ -19,6 +19,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 
 import { Injector } from '@angular/core';
 
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -66,6 +67,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
 
+    NzSelectModule,
     NzButtonModule,
     NzIconModule,
     NzMenuModule,
