@@ -9,7 +9,7 @@ import { Observable, firstValueFrom } from 'rxjs';
 export class ImageService {
   constructor(private _http: HttpClient) {}
 
-  async getImageById(id: number): Promise<any> {
+  async getImageById(id: number): Promise<string> {
     const appropriateUrl: string =
       ApiConfigurations.instance.imageGetUrl + `/${id}`;
 
@@ -21,11 +21,17 @@ export class ImageService {
         }),
         { defaultValue: null }
       );
-      return result;
+
+      if (result === null) {
+        throw new Error('Something happened with the image from the back end.');
+      }
+
+      const blob = new Blob([result], { type: 'image/jpg' });
+      return URL.createObjectURL(blob);
     } catch (error) {
       console.error('Error fetching image:', error);
     }
 
-    return null;
+    return '/assets/missing_image_placeholder.jpg';
   }
 }

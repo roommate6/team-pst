@@ -13,6 +13,7 @@ import { RecipesPresenterComponent } from './components/recipes-presenter/recipe
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'dashboard', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
         component: RecipesPresenterComponent,
       },
       {
-        path: 'recipe',
+        path: 'recipe/:id',
         component: RecipePageComponent,
       },
       {

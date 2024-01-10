@@ -23,6 +23,11 @@ namespace YummyGen.Application
 		public async Task<IngredientDto> GetIngredientByIdWithIncludings(int id)
 		{
 			var ingredient = await _ingredientRepository.GetIngredientByIdWithIncludings(id);
+			if (ingredient == null)
+			{
+				return null;
+			}
+
 			var result = Mapper.ToIngredientDto(ingredient);
 			return result;
 		}

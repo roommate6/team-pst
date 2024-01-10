@@ -29,6 +29,18 @@ namespace YummyGen.Controller
 			_imageRepository = imageRepository ?? throw new ArgumentNullException(nameof(imageRepository));
 		}
 
+		[HttpGet("{id}")]
+		public async Task<ActionResult<List<RecipeDto>>> GetRecipeById(int id)
+		{
+			var recipeDto = await _recipeService.GetRecipeByIdWithIncludings(id);
+			if (recipeDto == null)
+			{
+				return NotFound();
+			}
+
+			return Ok(recipeDto);
+		}
+
 		[HttpGet("all-by-ingredients")]
 		public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredients([FromQuery] List<string> ingredientNames)
 		{

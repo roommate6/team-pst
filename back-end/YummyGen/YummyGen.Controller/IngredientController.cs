@@ -33,6 +33,11 @@ namespace YummyGen.Controller
 		public async Task<ActionResult<IngredientDto>> GetIngredientById(int id)
 		{
 			var ingredientDto = await _ingredientService.GetIngredientByIdWithIncludings(id);
+			if (ingredientDto == null)
+			{
+				return NotFound();
+			}
+
 			return Ok(ingredientDto);
 		}
 

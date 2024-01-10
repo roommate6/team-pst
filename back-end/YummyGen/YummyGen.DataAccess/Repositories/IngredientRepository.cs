@@ -18,7 +18,7 @@ namespace YummyGen.DataAccess.Repositories
 
 		public async Task<Ingredient> GetIngredientByIdWithIncludings(int id)
 		{
-			return await context.Set<Ingredient>().Include(i => i.Image).FirstAsync(i => i.Id == id);
+			return await context.Set<Ingredient>().Include(i => i.Image).FirstOrDefaultAsync(i => i.Id == id);
 		}
 
 		public async Task<IEnumerable<Ingredient>> GetIngredientsByNames(List<string> ingredientNames)

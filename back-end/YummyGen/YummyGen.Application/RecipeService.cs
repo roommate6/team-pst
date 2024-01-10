@@ -27,5 +27,17 @@ namespace YummyGen.Application
             var result = recipes.Select(r => Mapper.ToRecipeDto(r)).ToList();
             return result;
         }
-    }
+
+		public async Task<RecipeDto> GetRecipeByIdWithIncludings(int id)
+		{
+			var recipe = await _recipeRepository.GetByIdWithIngredientsAndWithIncludings(id);
+            if (recipe == null)
+            {
+                return null;
+            }
+
+            var result = Mapper.ToRecipeDto(recipe);
+            return result;
+		}
+	}
 }

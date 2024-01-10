@@ -29,6 +29,8 @@ export class ApiConfigurations {
   // RECIPE URLS
 
   // get
+  readonly recipeGetUrl: string = this.recipeBaseUrl;
+  // get
   readonly recipeAllUrl: string = this.recipeBaseUrl + '/all';
   // get
   readonly recipeAllByIngredientsUrl: string =

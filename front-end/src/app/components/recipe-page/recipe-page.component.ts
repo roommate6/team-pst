@@ -1,31 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe.interface';
+import { ActivatedRoute } from '@angular/router';
+import { RecipeService } from 'src/app/services/recipe.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-recipe-page',
   templateUrl: './recipe-page.component.html',
   styleUrls: ['./recipe-page.component.scss'],
 })
-export class RecipePageComponent {
-  stepNumber: number = 1;
+export class RecipePageComponent implements OnInit {
+  recipe!: Recipe;
+  recipeImageUrl!: string;
 
-  recipeTest: Recipe = {
-    id: 22,
-    name: 'Pasta',
-    shortDescription:
-      "Description for yummy pasta. This description is very long and should be cut off at some point. I don't know how long it should be, but it should be long enough to test if the text is cut off.",
-    ingredients: [
-      {
-        id: 2,
-        name: 'Pasta',
-        imageId: 1,
-      },
-      {
-        id: 3,
-        name: 'Tomato sauce',
-        imageId: 1,
-      },
-    ],
-    imageId: 19,
-  };
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _recipeService: RecipeService,
+    private _imageService: ImageService
+  ) {}
+
+  async ngOnInit(): Promise<void> {
+    const recipeId = this._activatedRoute.snapshot.paramMap.get('id');
+    if (recipeId === null) {
+      return;
+    }
+
+    const recipe = await this._recipeService.getRecipeById(
+      Number.parseInt(recipeId)
+    );
+    if (recipe === null) {
+      return;
+    }
+
+    this.recipe = recipe;
+    this.recipeImageUrl = await this._imageService.getImageById(
+      this.recipe.imageId
+    );
+  }
 }

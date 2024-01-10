@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeEventBusListeners();
-    this._router.navigate(['login']);
+    this._router.navigate(['dashboard', 'home']);
   }
 
   private initializeEventBusListeners() {
@@ -40,7 +40,11 @@ export class AppComponent implements OnInit {
     this._eventBusService
       .subscribe('DASHBOARD_view_recipe_button_click_event')
       .subscribe((event: any) => {
-        this._router.navigate(['dashboard', 'recipe']);
+        this._router.navigate([
+          'dashboard',
+          'recipe',
+          `${event.carryingData.recipeId}`,
+        ]);
       });
   }
 }

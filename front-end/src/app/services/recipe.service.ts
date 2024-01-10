@@ -25,4 +25,20 @@ export class RecipeService {
       return [];
     }
   }
+
+  async getRecipeById(id: number): Promise<Recipe | null> {
+    const appropriateUrl = ApiConfigurations.instance.recipeGetUrl + `/${id}`;
+    const headers = new HttpHeaders({});
+
+    try {
+      const result = await firstValueFrom(
+        this._http.get<Recipe>(appropriateUrl, { headers: headers }),
+        { defaultValue: null }
+      );
+      return result;
+    } catch (error) {
+      console.error('Error fetching recipe:', error);
+      return null;
+    }
+  }
 }
