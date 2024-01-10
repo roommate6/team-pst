@@ -2,6 +2,11 @@ import { User } from '../interfaces/user.interface';
 import { EventBusService } from '../services/event-bus.service';
 
 import { AppInjector } from '../app.module';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
 
 export class AppStateTracker {
   private static _instance: AppStateTracker | null = null;

@@ -8,6 +8,7 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 import { SearchNamePageComponent } from './components/search-name-page/search-name-page.component';
 import { SearchIngredientPageComponent } from './components/search-ingredient-page/search-ingredient-page.component';
+import { UserPageComponent } from './components/user-page/user-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'name-search', component: SearchNamePageComponent },
   { path: 'ingredient-search', component: SearchIngredientPageComponent },
   { path: 'menu', component: SideMenuComponent },
+  { path: 'user', component: UserPageComponent },
 ];
 
 @NgModule({

@@ -26,4 +26,8 @@ export class SideMenuComponent {
   moveToIngredientSearch() {
     this.router.navigate(['/ingredient-search']);
   }
+
+  moveToUserPage() {
+    this.router.navigate(['/user']);
+  }
 }
