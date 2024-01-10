@@ -1,5 +1,5 @@
 <!--The side menu-->
-<app-side-menu/>
+<app-side-menu />
 
 <!--The actual search page-->
 
@@ -7,30 +7,24 @@
 <h1>Search Page : Name</h1>
 
 <div class="search-container">
+  <nz-input-group class="search-bar" nzSearch nzSize="large">
+    <input
+      [(ngModel)]="searchTerm"
+      type="text"
+      nz-input
+      placeholder="input search text"
+    />
+  </nz-input-group>
 
-<nz-input-group class="search-bar"  nzSearch nzSize="large">
-  <input
-    [(ngModel)]="searchTerm"
-    type="text"
-    nz-input
-    placeholder="input search text"
-  />
-</nz-input-group>
-
-
-<!-- Button that will start the search -->
-<button nz-button nzType="primary" (click)="searchRecipe()">
-  <span nz-icon nzType="search"></span>
-  Search
-</button>
-
+  <!-- Button that will start the search -->
+  <button nz-button nzType="primary" (click)="searchRecipe()">
+    <span nz-icon nzType="search"></span>
+    Search
+  </button>
 </div>
 
 <div class="card-container">
   <tr *ngFor="let recipe of result_list">
-    <app-recipe-card
-      [recipeName]="recipe.Name"
-      [recipeDescription]="recipe.Description"
-    ></app-recipe-card>
+    <app-recipe-card [recipe]="recipe"></app-recipe-card>
   </tr>
 </div>

@@ -1,42 +1,48 @@
 export class ApiConfigurations {
   // API BASE URL
 
-  readonly apiBaseUrl: string = 'https://localhost:7223/api/';
+  readonly apiBaseUrl: string = 'https://localhost:7223/api';
 
   // CONTROLLERS BASE URLS
 
-  readonly authenticationBaseUrl: string = this.apiBaseUrl + 'Authentication/';
-  readonly ingredientBaseUrl: string = this.apiBaseUrl + 'Ingredient/';
-  readonly recipeBaseUrl: string = this.apiBaseUrl + 'Recipe/';
+  readonly authenticationBaseUrl: string = this.apiBaseUrl + '/Authentication';
+  readonly ingredientBaseUrl: string = this.apiBaseUrl + '/Ingredient';
+  readonly recipeBaseUrl: string = this.apiBaseUrl + '/Recipe';
+  readonly imageBaseUrl: string = this.apiBaseUrl + '/Images';
 
   // AUTHENTICATION URLS
 
   // post
   readonly authenticationLoginUrl: string =
-    this.authenticationBaseUrl + 'login';
+    this.authenticationBaseUrl + '/login';
   // post
   readonly authenticationRegisterUrl: string =
-    this.authenticationBaseUrl + 'register';
+    this.authenticationBaseUrl + '/register';
 
   // INGREDIENT URLS
 
   // get
-  readonly ingredientAllUrl: string = this.ingredientBaseUrl + 'all';
+  readonly ingredientAllUrl: string = this.ingredientBaseUrl + '/all';
   // post
-  readonly ingredientAddUrl: string = this.ingredientBaseUrl + 'add';
+  readonly ingredientAddUrl: string = this.ingredientBaseUrl + '/add';
 
   // RECIPE URLS
 
   // get
-  readonly recipeAllUrl: string = this.recipeBaseUrl + 'all';
+  readonly recipeAllUrl: string = this.recipeBaseUrl + '/all';
   // get
   readonly recipeAllByIngredientsUrl: string =
-    this.recipeBaseUrl + 'all-by-ingredients';
+    this.recipeBaseUrl + '/all-by-ingredients';
   // post
-  readonly recipeAddUrl: string = this.recipeBaseUrl + 'add';
+  readonly recipeAddUrl: string = this.recipeBaseUrl + '/add';
   // post
   readonly recipeAddIngredientUrl: string =
-    this.recipeBaseUrl + 'add-ingredient';
+    this.recipeBaseUrl + '/add-ingredient';
+
+  // IMAGE URLS
+
+  // get
+  readonly imageGetUrl: string = this.imageBaseUrl;
 
   static get instance(): ApiConfigurations {
     if (ApiConfigurations._instance === null) {

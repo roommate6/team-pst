@@ -16,22 +16,17 @@ export class SearchNamePageComponent {
   searchWord: FormControl = new FormControl();
 
   public recipe_list: Recipe[] = recipeData; // List of all the recipes
-  public result_list: Recipe[] = [];        // List of the recipes that match the search term
+  public result_list: Recipe[] = []; // List of the recipes that match the search term
   isLoading = false;
 
   //List of the cards with the steps
   recipeCardList: RecipeCardComponent[] = [];
-  recipeCard: RecipeCardComponent = new RecipeCardComponent();
+  // recipeCard: RecipeCardComponent = new RecipeCardComponent();
   router: Router;
-
-
 
   constructor(router: Router) {
     this.router = router;
   }
-
-
-
 
   ngOnInit(): void {
     console.log('Search page accessed!');
@@ -54,29 +49,26 @@ export class SearchNamePageComponent {
       );
   }
 
-
   /*WAS USING FOR TESTING THE BASIC SEARCH, MAY NOT USE IT IN THE FINAL PROJECT
     WIL BE DELETED LATER IF NECESSARY  */
   searchRecipes(keyword: string) {
     // Call your service here to search for recipes using the searchTerm
     // Update the result_list with the resulted recipes
     const result: Recipe[] = this.recipe_list.filter((recipe) =>
-      recipe.Name.toLowerCase().includes(keyword.toLowerCase())
+      recipe.name.toLowerCase().includes(keyword.toLowerCase())
     );
-    const resultNames: string[] = result.map((recipe) => recipe.Name);
+    const resultNames: string[] = result.map((recipe) => recipe.name);
     //this.result_list = this.recipe_list.filter(recipe => recipe.Name.toLowerCase().includes(keyword.toLowerCase()));
     return of(result);
   }
-
 
   // Search for recipes and display them as cards
   // Search so the searchTerm is included in the recipe name (must both be turned lowercase)
   searchRecipe() {
     this.result_list = this.recipe_list.filter((recipe) =>
-      recipe.Name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      recipe.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
-
 
   moveToNameSearch() {
     this.router.navigate(['/name-search']);
@@ -85,5 +77,4 @@ export class SearchNamePageComponent {
   moveToIngredientSearch() {
     this.router.navigate(['/ingredient-search']);
   }
-
 }

@@ -1,44 +1,33 @@
 <!--The side menu-->
-<app-side-menu/>
+<app-side-menu />
 
 <!--The actual search page-->
 <h1>Search Page : Ingredient</h1>
 
 <!--Add the form-controls from the search_bars list -->
 <div class="ingredient-bar-container">
+  <tr *ngFor="let search_bar of search_bars">
+    <nz-input-group class="ingredient-bar" nzSearch nzSize="default">
+      <input type="text" nz-input placeholder="Ingredient name" />
+    </nz-input-group>
+  </tr>
 
-<tr *ngFor = "let search_bar of search_bars">
-  <nz-input-group class="ingredient-bar"  nzSearch nzSize="default">
-    <input
-      type="text"
-      nz-input
-      placeholder="Ingredient name"
-    />
-  </nz-input-group>
-</tr>
+  <!-- Button that will add a new search box -->
+  <button class="addButton" nz-button nzType="primary" (click)="addSearchBox()">
+    <span nz-icon nzType="plus"></span>
+    Add Search Box
+  </button>
 
-
-<!-- Button that will add a new search box -->
-<button class="addButton" nz-button nzType="primary" (click)="addSearchBox()">
-  <span nz-icon nzType="plus"></span>
-  Add Search Box
-</button>
-
-<!-- Button that will start the search -->
-<button class="addButton" nz-button nzType="primary" (click)="searchRecipe()">
-  <span nz-icon nzType="search"></span>
-  Search
-</button>
-
-
+  <!-- Button that will start the search -->
+  <button class="addButton" nz-button nzType="primary" (click)="searchRecipe()">
+    <span nz-icon nzType="search"></span>
+    Search
+  </button>
 </div>
 
 <!--The list of recipes that will be displayed-->
 <div class="recipe-list">
   <tr *ngFor="let recipe of result_list">
-    <app-recipe-card
-      [recipeName]="recipe.Name"
-      [recipeDescription]="recipe.Description"
-    ></app-recipe-card>
+    <app-recipe-card [recipe]="recipe"></app-recipe-card>
   </tr>
 </div>

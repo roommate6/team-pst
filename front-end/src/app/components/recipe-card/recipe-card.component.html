@@ -1,9 +1,15 @@
 <div class="main-container">
-  <!--Pun an image with a URL as a source-->
-  <img class="recipe-img" src="recipeImageUrl" alt="recipeImage" />
-  <div class="recipe-name" [textContent]="recipeName"></div>
-  <div class="recipe-description" [textContent]="recipeDescription"></div>
-  <button class="addButton" nz-button nzType="default" (click)="onRecipeClick()">
+  <div class="recipe-image-container">
+    <img class="recipe-image" [src]="imageUrl" alt="recipeImage" />
+  </div>
+  <div class="recipe-name" [textContent]="recipe.name"></div>
+  <div class="recipe-description" [textContent]="recipe.shortDescription"></div>
+  <button
+    class="addButton"
+    nz-button
+    nzType="default"
+    (click)="onRecipeClick()"
+  >
     <span nz-icon nzType="link"></span>
     View Recipe
   </button>

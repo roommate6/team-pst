@@ -1,8 +1,6 @@
-<app-side-menu/>
+<app-side-menu />
 <div class="card-container">
-
- <tr *ngFor = "let recipe of recipe_list">
-  <app-recipe-card [recipeName]="recipe.Name" [recipeDescription]="recipe.Description"></app-recipe-card>
-</tr>
-
+  <tr *ngFor="let recipe of recipe_list">
+    <app-recipe-card [recipe]="recipe"></app-recipe-card>
+  </tr>
 </div>
