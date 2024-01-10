@@ -1,18 +1,15 @@
-<app-side-menu/>
-
 <div *ngIf="loggedUser" class="user-info">
-    <h2>Welcome to your profile!</h2>
-    <nz-card class="custom-card">
-      <nz-list [nzBordered]="false">
-        <nz-list-item class="vertical-list-item">
-            <p>Username: {{ loggedUser.userName }}</p>
-            <p>First Name: {{ loggedUser.firstName }}</p>
-            <p>Last Name: {{ loggedUser.lastName }}</p>
-        </nz-list-item>
-      </nz-list>
-    </nz-card>
-  </div>
-  <div *ngIf="!loggedUser">
-    <p>No user logged in.</p>
-  </div>
-  
+  <h2>Welcome to your profile!</h2>
+  <nz-card class="custom-card">
+    <nz-list [nzBordered]="false">
+      <nz-list-item class="vertical-list-item">
+        <p>Username: {{ loggedUser.userName }}</p>
+        <p>First Name: {{ loggedUser.firstName }}</p>
+        <p>Last Name: {{ loggedUser.lastName }}</p>
+      </nz-list-item>
+    </nz-list>
+  </nz-card>
+</div>
+<div *ngIf="!loggedUser">
+  <p>No user logged in.</p>
+</div>

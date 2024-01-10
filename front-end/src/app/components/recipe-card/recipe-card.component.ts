@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe.interface';
 import { ImageService } from 'src/app/services/image.service';
+import { EventBusService } from 'src/app/services/event-bus.service';
 
 @Component({
   selector: 'app-recipe-card',
@@ -12,7 +13,10 @@ export class RecipeCardComponent implements OnInit {
 
   imageUrl!: string;
 
-  constructor(private _imageService: ImageService) {}
+  constructor(
+    private _imageService: ImageService,
+    private _eventBusService: EventBusService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     const imageArrayBuffer = await this._imageService.getImageById(
@@ -33,6 +37,11 @@ export class RecipeCardComponent implements OnInit {
   }
 
   onRecipeClick() {
-    throw new Error('Method not implemented.');
+    this._eventBusService.publish({
+      name: 'DASHBOARD_view_recipe_button_click_event',
+      carryingData: {
+        recipeId: this.recipe.id,
+      },
+    });
   }
 }

@@ -15,14 +15,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeEventBusListeners();
-    this._router.navigate(['dashboard']);
+    this._router.navigate(['login']);
   }
 
   private initializeEventBusListeners() {
     this._eventBusService
       .subscribe('LOGIN_successful_login_event')
       .subscribe((event: any) => {
-        this._router.navigate(['dashboard']);
+        this._router.navigate(['dashboard', 'home']);
       });
 
     this._eventBusService
@@ -35,6 +35,12 @@ export class AppComponent implements OnInit {
       .subscribe('LOGIN_register_link_click_event')
       .subscribe((event: any) => {
         this._router.navigate(['register']);
+      });
+
+    this._eventBusService
+      .subscribe('DASHBOARD_view_recipe_button_click_event')
+      .subscribe((event: any) => {
+        this._router.navigate(['dashboard', 'recipe']);
       });
   }
 }

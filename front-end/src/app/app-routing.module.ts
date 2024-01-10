@@ -9,18 +9,42 @@ import { DashboardPageComponent } from './components/dashboard-page/dashboard-pa
 import { SearchNamePageComponent } from './components/search-name-page/search-name-page.component';
 import { SearchIngredientPageComponent } from './components/search-ingredient-page/search-ingredient-page.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import { RecipesPresenterComponent } from './components/recipes-presenter/recipes-presenter.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'dashboard', component: DashboardPageComponent },
-  { path: 'recipe', component: RecipePageComponent },
-  { path: 'ingredient', component: IngredientPageComponent },
-  { path: 'name-search', component: SearchNamePageComponent },
-  { path: 'ingredient-search', component: SearchIngredientPageComponent },
-  { path: 'menu', component: SideMenuComponent },
-  { path: 'user', component: UserPageComponent },
+  {
+    path: 'dashboard',
+    component: DashboardPageComponent,
+    children: [
+      {
+        path: 'home',
+        component: RecipesPresenterComponent,
+      },
+      {
+        path: 'recipe',
+        component: RecipePageComponent,
+      },
+      {
+        path: 'ingredient',
+        component: IngredientPageComponent,
+      },
+      {
+        path: 'name-search',
+        component: SearchNamePageComponent,
+      },
+      {
+        path: 'ingredient-search',
+        component: SearchIngredientPageComponent,
+      },
+      {
+        path: 'user',
+        component: UserPageComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
