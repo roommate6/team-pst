@@ -1,25 +1,32 @@
 <!--Add form control so that text changes are being kept tack of-->
-<h1>Search Page : Name</h1>
+<div class="main-container">
+  <h2>Search by name</h2>
 
-<div class="search-container">
-  <nz-input-group class="search-bar" nzSearch nzSize="large">
-    <input
-      [(ngModel)]="searchTerm"
-      type="text"
-      nz-input
-      placeholder="input search text"
-    />
-  </nz-input-group>
+  <div class="search-container">
+    <nz-input-group class="search-bar" nzSearch nzSize="large">
+      <input
+        [(ngModel)]="searchTerm"
+        type="text"
+        nz-input
+        placeholder="input search text"
+      />
+    </nz-input-group>
 
-  <!-- Button that will start the search -->
-  <button nz-button nzType="primary" (click)="searchRecipe()">
-    <span nz-icon nzType="search"></span>
-    Search
-  </button>
-</div>
+    <!-- Button that will start the search -->
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      class="search-button"
+      (click)="searchRecipe()"
+    >
+      <span nz-icon nzType="search"></span>
+    </button>
+  </div>
 
-<div class="card-container">
-  <tr *ngFor="let recipe of result_list">
-    <app-recipe-card [recipe]="recipe"></app-recipe-card>
-  </tr>
+  <div class="card-container">
+    <tr *ngFor="let recipe of result_list">
+      <app-recipe-card [recipe]="recipe"></app-recipe-card>
+    </tr>
+  </div>
 </div>
