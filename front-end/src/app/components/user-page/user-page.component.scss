@@ -1,1 +1,22 @@
 /* user-page.component.scss */
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    margin: 20px;
+}
+
+.custom-card {
+    margin: 20px;
+    width: 300px;
+}
+
+.vertical-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}

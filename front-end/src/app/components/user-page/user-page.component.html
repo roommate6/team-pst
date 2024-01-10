@@ -2,9 +2,9 @@
 
 <div *ngIf="loggedUser" class="user-info">
     <h2>Welcome to your profile!</h2>
-    <nz-card style="width: 300px;">
+    <nz-card class="custom-card">
       <nz-list [nzBordered]="false">
-        <nz-list-item style ="flex-direction: column;">
+        <nz-list-item class="vertical-list-item">
             <p>Username: {{ loggedUser.userName }}</p>
             <p>First Name: {{ loggedUser.firstName }}</p>
             <p>Last Name: {{ loggedUser.lastName }}</p>

@@ -29,8 +29,8 @@ export class RegisterPageComponent {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      //firstName: [null , [Validators.required, Validators.minLength(3)]],
-      //lastName: [null , [Validators.required, Validators.minLength(3)]],
+      firstName: [null , [Validators.required, Validators.minLength(3)]],
+      lastName: [null , [Validators.required, Validators.minLength(3)]],
       username: [null, [Validators.required, Validators.minLength(3)]],
       password: [null, [Validators.required, Validators.minLength(3)]],
       checkPassword: [null, [Validators.required, Validators.minLength(3)]],
@@ -82,11 +82,11 @@ export class RegisterPageComponent {
       firstName: this.registerForm.value.firstName,
       lastName: this.registerForm.value.lastName,
       userName: this.registerForm.value.username,
-      //password: this.registerForm.value.password,
+      password: this.registerForm.value.password,
       //email: this.registerForm.value.email
     };
 
-    // this.userService.addUser(this.newUser);
+    this.userService.register(this.newUser);
     alert('Registration successful!');
     this.router.navigate(['/login']);
   }

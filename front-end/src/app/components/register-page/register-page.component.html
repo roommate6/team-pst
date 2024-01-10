@@ -16,6 +16,20 @@
       </nz-form-control>
     </nz-form-item>
 
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="firstName" nzRequired>First Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your first name!">
+        <input nz-input id="firstName" formControlName="firstName" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="lastName" nzRequired>Last Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your last name!">
+        <input nz-input id="lastName" formControlName="lastName" />
+      </nz-form-control>
+    </nz-form-item>
+
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
@@ -44,7 +58,7 @@
     </nz-form-item>
 
     <nz-form-item nz-row class="register-area">
-      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <nz-form-control [nzSpan]="12" [nzOffset]="0">
         <button nz-button nzType="primary">Register</button>
         <button nz-button (click)="cancelClick()">Cancel</button>
       </nz-form-control>

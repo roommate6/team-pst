@@ -46,6 +46,33 @@ export class UserService {
       });
   }
 
+  register(user: User): void {
+    const registerUrl: string = ApiConfigurations.instance.authenticationRegisterUrl;
+    const headers = new HttpHeaders({});
+
+    this._http
+      .post(
+        registerUrl,
+        {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          password: user.password,
+        },
+        {
+          headers: headers,
+        }
+      )
+      .subscribe({
+        next: (data: any) => {
+          //this.notifyThatTheRegisterWasSuccessful();
+        },
+        error: (err: any) => {
+          //this.notifyThatTheRegisterWasUnsuccessful();
+        },
+      });
+  }
+
   private notifyThatTheLoginWasSuccessful() {
     this._eventBusService.publish({
       name: 'LOGIN_successful_login_event',
