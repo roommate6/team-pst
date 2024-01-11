@@ -1,22 +1,22 @@
 <div class="main-container">
+
   <div class="center-container">
-    <div class="recipe-name" [textContent]="recipe.name"></div>
 
     <div class="image-ingredient-container">
       <img [src]="recipeImageUrl" alt="recipe image" class="image-container" />
 
       <!--List of the ingredients-->
 
-      <div class="ingredients-container"></div>
-      <h1>Ingredients</h1>
-      <div *ngFor="let ingredient of recipe.ingredients" class="ingredient">
-        <p>{{ ingredient.name }}</p>
-
-        <app-ingredient-list
-          [ingredients]="recipe.ingredients"
-        ></app-ingredient-list>
+      <div class="ingredients-container">
+        <div class="recipe-name" [textContent]="recipe.name"></div>
+        <h1>Ingredients</h1>
+          <tr *ngFor="let ingredient of recipe.ingredients" class="ingredient">
+            {{ ingredient.name }}
+          </tr>
       </div>
     </div>
+
+
 
     <div class="description-container">
       {{ recipe.shortDescription }}
