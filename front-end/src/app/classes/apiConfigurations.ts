@@ -33,8 +33,11 @@ export class ApiConfigurations {
   // get
   readonly recipeAllUrl: string = this.recipeBaseUrl + '/all';
   // get
-  readonly recipeAllByIngredientsUrl: string =
-    this.recipeBaseUrl + '/all-by-ingredients';
+  readonly recipeAllByIngredientsIdsUrl: string =
+    this.recipeBaseUrl + '/all-by-ingredients-ids';
+  // get
+  readonly recipeAllByIngredientsNamesUrl: string =
+    this.recipeBaseUrl + '/all-by-ingredients-names';
   // post
   readonly recipeAddUrl: string = this.recipeBaseUrl + '/add';
   // post

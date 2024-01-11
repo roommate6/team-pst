@@ -41,10 +41,17 @@ namespace YummyGen.Controller
 			return Ok(recipeDto);
 		}
 
-		[HttpGet("all-by-ingredients")]
-		public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredients([FromQuery] List<string> ingredientNames)
+		[HttpGet("all-by-ingredients-names")]
+		public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredientsNames([FromQuery] List<string> ingredientsNames)
 		{
-			var recipes = await _recipeIngredientService.GetRecipesByIngredientsWithIncludings(ingredientNames);
+			var recipes = await _recipeIngredientService.GetRecipesByIngredientsNamesWithIncludings(ingredientsNames);
+			return Ok(recipes);
+		}
+
+		[HttpGet("all-by-ingredients-ids")]
+		public async Task<ActionResult<List<RecipeDto>>> GetRecipesByIngredientsIds([FromQuery] List<int> ingredientsIds)
+		{
+			var recipes = await _recipeIngredientService.GetRecipesByIngredientsIdsWithIncludings(ingredientsIds);
 			return Ok(recipes);
 		}
 

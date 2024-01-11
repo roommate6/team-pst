@@ -26,3 +26,10 @@ nz-breadcrumb {
 nz-footer {
   text-align: center;
 }
+
+.menu-side-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

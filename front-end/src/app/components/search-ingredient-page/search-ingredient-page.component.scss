@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.select-ingridients-bar {
+  width: 100%;
+}
+
 .ingredient-bar {
   display: block;
   flex-direction: column;
@@ -26,6 +30,7 @@
 }
 
 .ingredient-search-bar-container {
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;

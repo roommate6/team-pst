@@ -2,49 +2,30 @@
   <h2>Search by ingredients</h2>
 
   <div class="ingredient-search-bar-container">
-    <button
-      class="addButton"
-      nz-button
-      nzType="primary"
-      (click)="addSearchBox()"
-      nzSize="large"
-    >
-      <span nz-icon nzType="plus"></span>
-    </button>
-
-    <!-- <tr *ngFor="let searchBar of searchBars">
-      <nz-input-group
-        class="ingredient-bar"
-        nzSearch
-        nzSize="default"
-        nzSize="large"
-      >
-        <input type="text" nz-input placeholder="Ingredient name" />
-      </nz-input-group>
-    </tr> -->
-
     <nz-select
+      class="select-ingridients-bar"
       [nzMaxTagCount]="3"
       [nzMaxTagPlaceholder]="tagPlaceHolder"
       nzMode="multiple"
       nzPlaceHolder="Please select"
-      [(ngModel)]="selectedIngredientList"
+      [(ngModel)]="selectedIngrediens"
+      nzSize="large"
     >
       <nz-option
-        *ngFor="let item of ingredientList"
+        *ngFor="let item of ingredients"
         [nzLabel]="item.name"
         [nzValue]="item"
       ></nz-option>
     </nz-select>
     <ng-template #tagPlaceHolder let-selectedList
-      >and {{ selectedList.length }} more selected</ng-template
+      >And {{ selectedList.length }} more selected...</ng-template
     >
 
     <button
       class="addButton"
       nz-button
       nzType="primary"
-      (click)="searchRecipe()"
+      (click)="searchRecipes()"
       nzSize="large"
     >
       <span nz-icon nzType="search"></span>
@@ -53,7 +34,7 @@
   </div>
 
   <div class="recipe-list">
-    <tr *ngFor="let recipe of result_list">
+    <tr *ngFor="let recipe of resultedRecipes">
       <app-recipe-card [recipe]="recipe"></app-recipe-card>
     </tr>
   </div>

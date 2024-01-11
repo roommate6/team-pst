@@ -17,17 +17,22 @@ namespace YummyGen.Application
             _ingredientRepository = ingredientRepository ?? throw new ArgumentNullException(nameof(ingredientRepository));
         }
 
-        public async Task<List<RecipeDto>> GetRecipesByIngredientsWithIncludings(List<string> ingredientNames)
+        public async Task<List<RecipeDto>> GetRecipesByIngredientsNamesWithIncludings(List<string> ingredientsNames)
         {
-            var ingredients = await _ingredientRepository.GetIngredientsByNames(ingredientNames.Select(i => i.ToLower()).ToList());
-            var ingredientIds = ingredients.Select(i => i.Id).ToList();
-            var recipeIngredients = await _recipeIngredientRepository.GetByIngredientsWithIncludings(ingredientIds);
-            var recipes = recipeIngredients.Select(ri => ri.Recipe).ToList();
-            var result = recipes.Select(r => Mapper.ToRecipeDto(r)).ToList();
-            return result;
+            var ingredients = await _ingredientRepository.GetIngredientsByNames(ingredientsNames.Select(i => i.ToLower()).ToList());
+            var ingredientsIds = ingredients.Select(i => i.Id).ToList();
+            return await GetRecipesByIngredientsIdsWithIncludings(ingredientsIds);
         }
 
-        public async Task<RecipeDto> AddIngredientToRecipeWithIncludings(int ingredientId, int recipeId)
+		public async Task<List<RecipeDto>> GetRecipesByIngredientsIdsWithIncludings(List<int> ingredientsIds)
+		{
+			var recipeIngredients = await _recipeIngredientRepository.GetByIngredientsWithIncludings(ingredientsIds);
+			var recipes = recipeIngredients.Select(ri => ri.Recipe).ToList();
+			var result = recipes.Select(r => Mapper.ToRecipeDto(r)).ToList();
+			return result;
+		}
+
+		public async Task<RecipeDto> AddIngredientToRecipeWithIncludings(int ingredientId, int recipeId)
         {
             var recipeIngredient = new RecipeIngredient
             {
