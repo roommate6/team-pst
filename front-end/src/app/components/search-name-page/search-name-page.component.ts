@@ -16,13 +16,11 @@ export class SearchNamePageComponent {
   searchTerm = '';
   searchWord: FormControl = new FormControl();
 
-  public recipeList: Recipe[] = recipeData; // List of all the recipes
-  public result_list: Recipe[] = []; // List of the recipes that match the search term
+  public recipeList: Recipe[] = recipeData;
+  public result_list: Recipe[] = [];
   isLoading = false;
 
-  //List of the cards with the steps
   recipeCardList: RecipeCardComponent[] = [];
-  // recipeCard: RecipeCardComponent = new RecipeCardComponent();
   router: Router;
 
   constructor(router: Router, private _recipeService: RecipeService) {
@@ -31,6 +29,7 @@ export class SearchNamePageComponent {
 
   async ngOnInit(): Promise<void> {
     this.recipeList = await this._recipeService.getAllRecipes();
+    this.result_list = this.recipeList;
     this.searchWord.setValue(this.searchTerm);
     this.searchWord.valueChanges
       .pipe(
@@ -49,22 +48,13 @@ export class SearchNamePageComponent {
       );
   }
 
-  /*WAS USING FOR TESTING THE BASIC SEARCH, MAY NOT USE IT IN THE FINAL PROJECT
-    WIL BE DELETED LATER IF NECESSARY  */
   searchRecipes(keyword: string) {
-
-    // Call your service here to search for recipes using the searchTerm
-    // Update the result_list with the resulted recipes
     const result: Recipe[] = this.recipeList.filter((recipe) =>
       recipe.name.toLowerCase().includes(keyword.toLowerCase())
     );
-    const resultNames: string[] = result.map((recipe) => recipe.name);
-    //this.result_list = this.recipe_list.filter(recipe => recipe.Name.toLowerCase().includes(keyword.toLowerCase()));
     return of(result);
   }
 
-  // Search for recipes and display them as cards
-  // Search so the searchTerm is included in the recipe name (must both be turned lowercase)
   searchRecipe() {
     this.result_list = this.recipeList.filter((recipe) =>
       recipe.name.toLowerCase().includes(this.searchTerm.toLowerCase())

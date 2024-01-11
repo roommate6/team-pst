@@ -21,6 +21,7 @@ export class SearchIngredientPageComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.ingredients = await this._ingredientService.getAllIngredients();
+    this.resultedRecipes = await this._recipeService.getAllRecipes();
   }
 
   async searchRecipes(): Promise<void> {

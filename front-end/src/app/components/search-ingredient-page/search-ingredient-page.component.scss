@@ -6,6 +6,15 @@
   align-items: center;
 }
 
+.recipe-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 19px;
+  gap: 20px;
+}
+
 .select-ingridients-bar {
   width: 100%;
 }

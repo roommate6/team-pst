@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeEventBusListeners();
-    this._router.navigate(['dashboard', 'home']);
+    this._router.navigate(['login']);
   }
 
   private initializeEventBusListeners() {
