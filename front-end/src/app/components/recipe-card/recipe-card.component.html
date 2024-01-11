@@ -3,7 +3,9 @@
     <img class="recipe-image" [src]="imageUrl" alt="recipeImage" />
   </div>
   <div class="recipe-name" [textContent]="recipe.name"></div>
-  <div class="recipe-description" [textContent]="recipe.shortDescription"></div>
+  <div class="description-mask">
+    <div class="recipe-description" [textContent]="recipe.shortDescription"></div>
+  </div>
   <button
     class="addButton"
     nz-button
