@@ -31,7 +31,7 @@ namespace YummyGen.Tests
 
             var service = new RecipeIngredientService(mockRecipeIngredientRepository.Object, mockRecipeRepository.Object, mockIngredientRepository.Object);
 
-            var result = await service.GetRecipesByIngredientsWithIncludings(new List<string>() { "Flour", "Cheese" });
+            var result = await service.GetRecipesByIngredientsIdsWithIncludings(new List<int> { 1, 2 });
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
