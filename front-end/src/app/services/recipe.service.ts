@@ -45,7 +45,7 @@ export class RecipeService {
 
   async getRecipesByIngredients(ingredients: Ingredient[]): Promise<Recipe[]> {
     const appropriateUrl =
-      ApiConfigurations.instance.recipeAllByIngredientsIdsUrl;
+      ApiConfigurations.instance.recipeAllByIngredientsIdsExclusiveUrl;
     const headers = new HttpHeaders({});
 
     let listOfIds: number[] = [];

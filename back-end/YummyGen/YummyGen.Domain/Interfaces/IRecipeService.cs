@@ -7,5 +7,6 @@ namespace YummyGen.Domain.Interfaces
         Task<RecipeDto> AddRecipe(AddRecipeDto addRecipeDto, Image image);
         Task<List<RecipeDto>> GetAllRecipesWithIncludings();
         Task<RecipeDto> GetRecipeByIdWithIncludings(int id);
+        Task<List<RecipeDto>> GetRecipeByIngredientsIdsWithIncludings(List<int> ingredientsIds);
     }
 }

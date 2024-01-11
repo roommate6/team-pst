@@ -4,7 +4,7 @@ using YummyGen.Domain.Interfaces;
 
 namespace YummyGen.Application
 {
-    public class RecipeService : IRecipeService
+	public class RecipeService : IRecipeService
     {
         private readonly IRecipeRepository _recipeRepository;
 
@@ -38,6 +38,14 @@ namespace YummyGen.Application
 
             var result = Mapper.ToRecipeDto(recipe);
             return result;
+		}
+
+		public async Task<List<RecipeDto>> GetRecipeByIngredientsIdsWithIncludings(List<int> ingredientsIds)
+		{
+            var recipes = await _recipeRepository.GetAllWithIngredientsAndWithIncludings();
+            var filteredRecipes = recipes.Where(r => !r.Ingredients.Select(i => i.Id).Except(ingredientsIds).Any());
+			var result = filteredRecipes.Select(r => Mapper.ToRecipeDto(r)).ToList();
+			return result;
 		}
 	}
 }
