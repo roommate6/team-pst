@@ -38,6 +38,7 @@ import { SearchNamePageComponent } from './components/search-name-page/search-na
 import { SearchIngredientPageComponent } from './components/search-ingredient-page/search-ingredient-page.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { RecipesPresenterComponent } from './components/recipes-presenter/recipes-presenter.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 export let AppInjector: Injector;
 
@@ -59,6 +60,7 @@ registerLocaleData(en);
     SearchIngredientPageComponent,
     UserPageComponent,
     RecipesPresenterComponent,
+    AboutPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,4 +28,8 @@ export class SideMenuComponent {
   moveToUserPage() {
     this.router.navigate(['dashboard', 'user']);
   }
+
+  moveToAboutPage() {
+    this.router.navigate(['dashboard', 'about']);
+  }
 }

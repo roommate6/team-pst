@@ -1,0 +1,32 @@
+h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-card {
+  margin: fit-content;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.vertical-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin: 2px;
+}
