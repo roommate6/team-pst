@@ -4,11 +4,12 @@
   justify-content: flex-start;
   padding: 20px;
   gap: 20px;
+  background-color: #364d79;
 }
 
 [nz-carousel-content] {
   text-align: center;
-  height: 160px;
+  height: 100%;
   line-height: 160px;
   background: #364d79;
   color: #fff;
@@ -22,7 +23,7 @@ h3 {
   margin-top: 200px;
   user-select: none;
   font-size: 180px;
-  color: #2b3341;
+  color: #000e27;
   font-family: "Spartan";
 }
 
@@ -31,10 +32,6 @@ h3 {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-}
-
-.carousel-container {
-  height: 100%;
 }
 
 .recipe-image {
