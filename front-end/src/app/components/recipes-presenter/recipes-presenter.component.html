@@ -1,5 +1,18 @@
-<div class="card-container">
-  <tr *ngFor="let recipe of recipeList">
-    <app-recipe-card [recipe]="recipe"></app-recipe-card>
-  </tr>
+<div class="main-container">
+  <nz-carousel nzAutoPlay class="carousel-container">
+    <div
+      class="carousel-element"
+      nz-carousel-content
+      *ngFor="let recipe of recipeList; index as i"
+    >
+      <h3>{{ recipe.name }}</h3>
+      <img class="recipe-image" [src]="imageUrls[i]" alt="recipeImage" />
+    </div>
+  </nz-carousel>
+
+  <div class="card-container">
+    <tr *ngFor="let recipe of recipeList">
+      <app-recipe-card [recipe]="recipe"></app-recipe-card>
+    </tr>
+  </div>
 </div>

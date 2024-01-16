@@ -19,6 +19,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 
 import { Injector } from '@angular/core';
 
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -67,6 +68,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
 
+    NzCarouselModule,
     NzSelectModule,
     NzButtonModule,
     NzIconModule,
