@@ -10,6 +10,7 @@ import { SearchNamePageComponent } from './components/search-name-page/search-na
 import { SearchIngredientPageComponent } from './components/search-ingredient-page/search-ingredient-page.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { RecipesPresenterComponent } from './components/recipes-presenter/recipes-presenter.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -44,6 +45,10 @@ const routes: Routes = [
         path: 'user',
         component: UserPageComponent,
       },
+      {
+        path: 'about',
+        component: AboutPageComponent,
+      }
     ],
   },
 ];
