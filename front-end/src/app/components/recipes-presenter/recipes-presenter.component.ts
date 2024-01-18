@@ -22,6 +22,6 @@ export class RecipesPresenterComponent {
   }
 
   async getRecipeImageUrl(recipe: Recipe): Promise<string> {
-    return await this._imageService.getImageById(recipe.id);
+    return await this._imageService.getImageById(recipe.imageId);
   }
 }
