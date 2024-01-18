@@ -4,7 +4,7 @@
 
 This is a team project made by three students.
 
-This project serves the subject called "**software engineering**". The subject is taught in the 3rd year of the computer science faculty.
+This project serves the subjects "**software engineering**" and "**web applications development**". The subject is taught in the 3rd year of the computer science faculty.
 
 ## Team
 
